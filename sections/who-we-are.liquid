@@ -1,0 +1,349 @@
+{% schema %}
+{
+  "name": "SP Exact About Layout",
+  "settings": [
+    { "type": "text", "id": "mini_text", "label": "Mini Text", "default": "WHO WE ARE" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The largest privately held real estate investors and managers in the world" },
+
+    { "type": "text", "id": "vision_title", "label": "Vision Title", "default": "Our vision" },
+    { "type": "textarea", "id": "vision_desc", "label": "Vision Description" },
+
+    { "type": "text", "id": "mission_title", "label": "Mission Title", "default": "Our mission" },
+    { "type": "textarea", "id": "mission_desc", "label": "Mission Description" },
+
+    { "type": "image_picker", "id": "main_img", "label": "Main Image" },
+    { "type": "image_picker", "id": "small_img", "label": "Small Image" },
+
+    { "type": "text", "id": "stat1_title", "label": "Stat 1 Title", "default": "GLOBAL REACH" },
+    { "type": "text", "id": "stat1", "label": "Stat 1 Number", "default": "85" },
+    { "type": "text", "id": "stat1_text", "label": "Stat 1 Text", "default": "offices worldwide" },
+
+    { "type": "text", "id": "stat2_title", "label": "Stat 2 Title", "default": "LOCAL EXPERTISE" },
+    { "type": "text", "id": "stat2", "label": "Stat 2 Number", "default": "1500" },
+    { "type": "text", "id": "stat2_text", "label": "Stat 2 Text", "default": "employees" },
+
+    { "type": "text", "id": "stat3_title", "label": "Stat 3 Title", "default": "OUR IMPACT" },
+    { "type": "text", "id": "stat3", "label": "Stat 3 Number", "default": "248" },
+    { "type": "text", "id": "stat3_text", "label": "Stat 3 Text", "default": "projects done" }
+  ],
+  "presets": [{ "name": "SP Exact About Layout" }]
+}
+{% endschema %}
+
+<section class="abx-section">
+  <div class="abx-container">
+
+    <!-- TOP GRID -->
+    <div class="abx-top">
+
+      <!-- LEFT -->
+      <div class="abx-left">
+        <div class="abx-marquee">
+          <div class="abx-track">
+            {% for i in (1..12) %}
+              <span>{{ section.settings.mini_text }}</span>
+              <span class="dot">•</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="abx-right">
+        <h2>{{ section.settings.heading }}</h2>
+
+        <div class="abx-info">
+          <div class="abx-details">
+            <h4><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M11.5 4.00049H16.6789C16.8795 4.00049 17.0669 4.10074 17.1781 4.26765L20.7415 9.61223C20.8936 9.84038 20.8717 10.1426 20.6882 10.3464L12 20L9.82797 17.5866L8.74194 16.3799" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M7 3.25C7 3.25 7.21197 5.88887 8.28655 6.96345C9.36113 8.03803 12 8.25 12 8.25C12 8.25 9.36113 8.46197 8.28655 9.53655C7.21197 10.6111 7 13.25 7 13.25C7 13.25 6.78803 10.6111 5.71345 9.53655C4.63887 8.46197 2 8.25 2 8.25C2 8.25 4.63887 8.03803 5.71345 6.96345C6.78803 5.88887 7 3.25 7 3.25Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </svg> {{ section.settings.vision_title }}</h4>
+            <p>{{ section.settings.vision_desc }}</p>
+        </div>
+         <div class="abx-details">
+            <h4><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M7.06194 13.0957L4.45324 12.2912C3.78481 12.0851 3.53635 11.2687 3.97662 10.7252L5.86498 8.39377C6.24017 7.93055 6.80443 7.66145 7.40054 7.66145L11.5601 7.84376M7.06194 13.0957L11.5601 7.84376M7.06194 13.0957C7.06194 13.0957 7.72636 14.7264 8.5 15.5C9.27363 16.2736 10.9043 16.938 10.9043 16.938M10.9043 16.938L11.4563 19.2162C11.6182 19.8844 12.3961 20.1871 12.967 19.804L15.4635 18.129C16.0104 17.762 16.3385 17.1467 16.3385 16.4881L16.1562 12.44M10.9043 16.938L16.1562 12.44M16.1562 12.44C18.9493 9.87962 20.7481 7.49579 20.9977 3.95624C21.0361 3.41191 20.5881 2.96392 20.0437 3.0023C16.5042 3.25185 14.1204 5.05067 11.5601 7.84376M7.06194 18.969C7.06194 20.0907 6.15264 21 5.03097 21H3V18.969C3 17.8474 3.9093 16.9381 5.03097 16.9381C6.15264 16.9381 7.06194 17.8474 7.06194 18.969Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </svg> {{ section.settings.mission_title }}</h4>
+            <p>{{ section.settings.mission_desc }}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM GRID -->
+    <div class="abx-bottom">
+
+      <!-- IMAGE -->
+      <div class="abx-image">
+        {% if section.settings.main_img %}
+          <img src="{{ section.settings.main_img | image_url: width: 900 }}">
+        {% endif %}
+      </div>
+
+      <!-- CARDS -->
+      <div class="abx-cards">
+
+        <div class="abx-card">
+          <small>{{ section.settings.stat1_title }}</small>
+          <div class="main-stat1-card">
+          <h3>{{ section.settings.stat1 }}<span>+</span></h3>
+          <p>{{ section.settings.stat1_text }}</p>
+          </div>
+        </div>
+
+        <div class="abx-card">
+          <small>{{ section.settings.stat2_title }}</small>
+           <div class="main-stat1-card">
+          <h3>{{ section.settings.stat2 }}<span>+</span></h3>
+          <p>{{ section.settings.stat2_text }}</p>
+           </div>
+        </div>
+
+        <div class="abx-card">
+          <small>{{ section.settings.stat3_title }}</small>
+           <div class="main-stat1-card">
+          <h3>{{ section.settings.stat3 }}<span>+</span></h3>
+          <p>{{ section.settings.stat3_text }}</p>
+           </div>
+        </div>
+
+        <div class="abx-card abx-imgcard">
+          {% if section.settings.small_img %}
+            <img src="{{ section.settings.small_img | image_url: width: 400 }}">
+          {% endif %}
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+.abx-section {
+  padding: 140px 20px;
+  background: #f5f5f5;
+  position:relative;
+}
+
+.abx-container {
+  max-width: 1300px;
+  margin: auto;
+}
+
+section.abx-section:after {
+    content: "";
+    background: #fff;
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    left: 0;
+    top: -4%;
+    z-index:0;
+    border-radius: 50px 50px 0 0;
+}
+/* TOP */
+.abx-top {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 210px;
+  margin-bottom: 60px;
+}
+
+/* MARQUEE */
+.abx-marquee {
+  overflow: hidden;
+  border: 1px solid #d4ff3f;
+  border-radius: 30px;
+  padding: 6px 15px;
+}
+.abx-left {
+    width: 56%;
+}
+.abx-track {
+  display: flex;
+  gap: 15px;
+  white-space: nowrap;
+  animation: abxScroll 2s linear infinite;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@keyframes abxScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* RIGHT */
+.abx-right h2 {
+  font-size: 70px;
+  line-height: 1.1;
+  margin-bottom: 40px;
+   color: black;
+}
+
+/* INFO */
+.abx-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 90px;
+}
+.abx-info h4 {
+    FONT-SIZE: 26px;
+    color: black;
+    margin:0;
+    display:flex;
+    gap:10px;
+}
+.abx-info p {
+  color: #666;
+  font-size:18px;
+}
+.main-stat1-card h3{
+    margin:0;
+    font-size: 70px;
+    color: black;
+}
+.main-stat1-card p{
+      font-size:18px;
+      margin:0;
+      color:#8a8a8a;
+}
+.main-stat1-card h3 span{
+    font-size: 42px;
+}
+/* BOTTOM */
+.abx-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+.abx-image{
+      overflow: hidden;
+  border-radius: 25px;
+
+}
+/* IMAGE */
+.abx-image img {
+  width: 100%;
+  display: block;
+
+clip-path: path('M 40 0 L calc(100% - 80px) 0 Q calc(100% - 40px) 0 calc(100% - 40px) 20px L calc(100% - 40px) 40px Q calc(100% - 40px) 80px 100% 80px L 100% calc(100% - 40px) Q 100% 100% calc(100% - 40px) 100% L 40px 100% Q 0 100% 0 calc(100% - 40px) L 0 40px Q 0 0 40px 0 Z');
+}
+
+/* CARDS */
+.abx-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.abx-card {
+     background: #f1f1f1;
+    padding: 25px;
+    border-radius: 15px;
+    min-height: 350px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 40px 40px 30px 40px;
+
+}
+
+.abx-card small {
+ color: #000000;
+    border-bottom: 1px solid #e0e0e0;
+    line-height: 43px;
+    font-size: 12px;
+}
+.abx-card.abx-imgcard{
+        padding:0;
+}
+.abx-image img {
+    width: 100%;
+    height: 100%;
+}
+.abx-imgcard img{
+border-radius: 30px !important;
+height:auto;
+}
+.abx-card h3 span {
+  color: #d4ff3f;
+}
+
+@media(max-width: 768px){
+    .abx-top {
+    gap: 30px !important;
+}
+.abx-info {
+    gap: 29px !important;
+}
+.abx-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+    .abx-card {
+        padding: 20px 20px 20px 20px;
+        min-height: 100%;
+    }
+.abx-card.abx-imgcard {
+    padding: 0;
+    display: none !important;
+}
+}
+@media(max-width: 1024px){
+.abx-card {
+    padding: 20px 20px 20px 20px;
+}
+
+.main-stat1-card h3 {
+    font-size: 60px;
+}
+.abx-image img {
+    width: 100%;
+    height: 600px;
+}
+.abx-top {
+    gap: 100px;
+}
+.abx-right h2 {
+    font-size: 56px;
+}
+.abx-info {
+    gap: 57px;
+}
+.abx-section {
+    padding: 81px 20px;
+}
+}
+@media(max-width: 430px){
+    .abx-top {
+    display: grid;
+    grid-template-columns: 1fr;
+    }
+    .abx-marquee {
+    width: 112px;
+    }
+        .abx-right h2 {
+        font-size: 42px;
+    }
+    .abx-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    }
+    .abx-bottom {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    }
+        .abx-image img {
+        width: 100%;
+        height: 100%;
+    }
+        .main-stat1-card h3 {
+        font-size: 60px;
+        margin: 14px 0 0 0;
+    }
+        .abx-cards {
+        padding: 0;
+    }
+  
+}
+</style>

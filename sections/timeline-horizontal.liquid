@@ -1,0 +1,603 @@
+{% comment %}
+  Horizontal Timeline Journey Section
+  Perfect replica of WordPress design with scroll-locking effect
+  Timeline stays fixed while scrolling horizontally, then moves to next section
+{% endcomment %}
+
+{% style %}
+  /* SECTION STYLES */
+ .timeline-pin-wrapper {
+  position: relative;
+  height: 300vh; /* will be updated dynamically */
+}
+ 
+.timeline-journey-section {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: #f5f2ea;
+}
+
+  /* CONTAINER */
+  .timeline-container {
+    max-width: 1600px;
+    margin: 0 0 0 auto;
+    padding: 0px 20px 60px 20px;
+  }
+
+  /* STICKY LEFT COLUMN */
+  .timeline-sticky-left {
+    position: sticky;
+    top: 100px;
+    margin-bottom: 50px;
+    transition: all 0.3s ease;
+  }
+
+  /* SCROLLING BADGE (Horizontal looping text) */
+  .scrolling-badge-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 25px;
+    max-width: 140px;
+    color: #040404;
+    padding: 1px 20px 3px 20px;
+    border: 1px solid #e4ed64;
+    border-radius: 30px;
+  }
+
+  .scrolling-badge {
+    display: inline-block;
+    animation: scrollBadge 20s linear infinite;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .scrolling-badge span {
+    display: inline-block;
+    margin: 0 15px;
+  }
+
+  .scrolling-badge .dot {
+    font-size: 18px;
+    color: #cddc39;
+  }
+
+  @keyframes scrollBadge {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* MAIN HEADING */
+  .timeline-main-heading {
+    font-size: clamp(40px, 8vw, 70px);
+    font-weight: 700;
+    line-height: 1.1;
+    color:rgb(0, 0, 0);
+    margin: 15px 0 63px;
+    max-width: 700px;
+    padding-bottom:110px;
+  }
+
+  /* HORIZONTAL SCROLL WRAPPER */
+  .horizontal-scroll-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .horizontal-scroll-inner {
+    padding-right: 200px;
+    display: flex;
+    gap: 180px;
+    will-change: transform;
+  }
+
+  /* PROGRESS LINE */
+  .horizontal-scroll-line {
+    position: absolute;
+    top: 631px;
+    left: 76px;
+    width: 87%;
+    height: 0.2px;
+    background: #e0e0e0;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .horizontal-scroll-line:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: #e4ed64;
+    border-radius: 50%;
+    z-index: 3;
+  }
+
+  .line-base {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #e0dcd3;
+  }
+
+  .line-active {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #cddc39;
+    width: 0%;
+    transition: width 0.05s linear;
+  }
+
+  /* TIMELINE ITEM */
+  .timeline-item {
+    min-width: 276px;
+    max-width: 280px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    background: transparent;
+  }
+
+  .timeline-year {
+    font-size: 70px;
+    font-weight: 700;
+    color: #e4ed64;
+    margin: 0 0 -33px;
+    letter-spacing: -0.02em;
+  }
+
+  .timeline-image {
+    margin: -4px 0;
+  }
+
+  .timeline-image img {
+    width: 244px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .timeline-dot {
+    width: 39px;
+    height: 39px;
+    background: #e4ed64;
+    border-radius: 50%;
+    margin: 33px auto;
+    position: relative;
+    z-index: 3;
+  }
+
+  .timeline-text {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #444444;
+    margin: 0 auto;
+    font-weight: 400;
+  }
+
+  /* CTA BUTTON CARD */
+  .timeline-cta-card {
+    min-width: 400px;
+    max-width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .cta-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #d6df57;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    text-decoration: none;
+    color: #1a1a1a;
+    font-weight: 700;
+    font-size: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 15px 35px -10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    margin-top:72px;
+  }
+
+  .cta-link:hover {
+    transform: scale(1.05);
+    background: #c8d142;
+    box-shadow: 0 20px 40px -8px rgba(0,0,0,0.2);
+  }
+
+  .cta-link h6 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  /* BACKGROUND VECTOR */
+  .timeline-bg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+    transition: transform 0.2s linear;
+  }
+.timeline-bg .vector {
+  left: -190px;
+}
+  .timeline-bg .vector img {
+    width: 100%;
+    height: auto;
+  }
+.horizontal-scroll-inner {
+  flex-wrap: nowrap;
+}
+.timeline-pin-wrapper {
+  width: 100%;
+}
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .timeline-container {
+       padding: 0px 0px 60px 0px;
+    }
+    .horizontal-scroll-line{
+      left:0px;
+      top:604px !important;
+      transform:none;
+    }
+    .timeline-item {
+      min-width: 260px;
+    }
+  
+    .timeline-sticky-left{
+      padding:0 20px;
+    }
+    .timeline-main-heading {
+    font-size: clamp(40px, 8vw, 56px);
+        max-width: 600px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .timeline-sticky-left {
+      position: relative;
+      top: 0;
+    }
+    
+    .timeline-container {
+        padding: 50px 0px 60px 0px;
+    }
+    .timeline-bg{
+      width:100%:
+    }
+    
+    .horizontal-scroll-line{
+          top: 569px !important;
+          left:37px;
+    }
+    .timeline-main-heading{
+      padding-bottom: 26px;
+    }
+  }
+   @media (max-width: 480px) {
+     .timeline-main-heading{
+          font-size: clamp(40px, 8vw, 42px);
+    }
+        .horizontal-scroll-line {
+        top: 533px !important;
+        left: 0px;
+    }
+   }
+    @media (max-width: 375px) {
+     .horizontal-scroll-line {
+        top: 578px !important;
+        left: 0px;
+    }
+  }
+   
+{% endstyle %}
+<div class="timeline-pin-wrapper">
+<div class="timeline-journey-section" data-section-id="{{ section.id }}">
+  <div class="horizontal-scroll-line">
+    <div class="line-base"></div>
+    <div class="line-active" id="progressLineActive"></div>
+  </div>
+  <div class="timeline-container">
+    
+    <!-- STICKY LEFT COLUMN -->
+    <div class="timeline-sticky-left" id="timelineStickyLeft">
+      
+      <!-- Looping Scrolling Badge -->
+      <div class="scrolling-badge-wrapper">
+        <div class="scrolling-badge">
+          <span class="dot">·</span>
+          <span>{{ section.settings.badge_text | default: 'our story' }}</span>
+          <span class="dot">·</span>
+          <span>{{ section.settings.badge_text | default: 'our story' }}</span>
+          <span class="dot">·</span>
+          <span>{{ section.settings.badge_text | default: 'our story' }}</span>
+          <span class="dot">·</span>
+          <span>{{ section.settings.badge_text | default: 'our story' }}</span>
+          <span class="dot">·</span>
+          <span>{{ section.settings.badge_text | default: 'our story' }}</span>
+          <span class="dot">·</span>
+          <span>{{ section.settings.badge_text | default: 'our story' }}</span>
+          <span class="dot">·</span>
+          <span>{{ section.settings.badge_text | default: 'our story' }}</span>
+        </div>
+      </div>
+      
+      <!-- Main Heading -->
+      <h2 class="timeline-main-heading">
+        {{ section.settings.heading | default: '40+ years of a remarkable journey' }}
+      </h2>
+      
+    </div>
+    
+    <!-- HORIZONTAL SCROLL AREA -->
+    <div class="horizontal-scroll-wrapper" id="horizontalScrollWrapper">
+      <div class="horizontal-scroll-inner" id="horizontalScrollInner">
+        
+        {% for block in section.blocks %}
+          {% if block.type == 'timeline_item' %}
+            <div class="timeline-item" data-year="{{ block.settings.year }}">
+              <h3 class="timeline-year">{{ block.settings.year }}</h3>
+              
+              {% if block.settings.image != blank %}
+                <div class="timeline-image">
+                  {{ block.settings.image | image_url: width: 300 | image_tag: loading: 'lazy', class: 'timeline-img' }}
+                </div>
+              {% endif %}
+              
+              <div class="timeline-dot"></div>
+              
+              <div class="timeline-text">
+                {{ block.settings.text | default: 'Add description here.' }}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        
+        <!-- CTA CARD (Last Item) -->
+        <div class="timeline-cta-card">
+          <a href="{{ section.settings.button_link }}" class="cta-link" id="ctaButton">
+            <h6>{{ section.settings.cta_text | default: 'Get your free quote' }}</h6>
+          </a>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+  
+  <!-- Background Vector -->
+  {% if section.settings.bg_vector != blank %}
+    <div class="timeline-bg vector">
+      {{ section.settings.bg_vector | image_url: width: 400 | image_tag: loading: 'lazy' }}
+    </div>
+  {% endif %}
+  
+</div>
+</div>
+<script>
+(function() {
+
+  const scrollWrapper = document.getElementById('horizontalScrollWrapper');
+  const scrollInner = document.getElementById('horizontalScrollInner');
+  const progressLine = document.getElementById('progressLineActive');
+
+  if (!scrollWrapper || !scrollInner) return;
+
+  let maxScroll = 0;
+  let ticking = false;
+
+  // ===== BG ANIMATION VARIABLES =====
+  let bgCurrent = 100; // start hidden
+  let bgTarget = 100;
+
+  // ===== CALCULATE WIDTH =====
+  function updateDimensions() {
+
+    const totalWidth = scrollInner.scrollWidth;
+    const visibleWidth = window.innerWidth;
+
+    const extraSpace = 300; // for last button
+    maxScroll = Math.max(0, totalWidth - visibleWidth + extraSpace);
+
+    const pinWrapper = document.querySelector('.timeline-pin-wrapper');
+    pinWrapper.style.height = maxScroll + window.innerHeight + 'px';
+  }
+
+  // ===== SCROLL HANDLER =====
+  function handleScroll() {
+
+    const section = document.querySelector('.timeline-pin-wrapper');
+    const rect = section.getBoundingClientRect();
+
+    let scrollY = -rect.top;
+    scrollY = Math.max(0, Math.min(scrollY, maxScroll));
+
+    // horizontal movement
+    scrollInner.style.transform = `translateX(-${scrollY}px)`;
+
+    // progress line
+    if (progressLine && maxScroll > 0) {
+      progressLine.style.width = `${(scrollY / maxScroll) * 100}%`;
+    }
+
+    // ===== BG PROGRESS CALCULATION =====
+    if (maxScroll > 0) {
+      let progress = scrollY / maxScroll; // 0 → 1
+      bgTarget = 100 - (progress * 100); // bottom → top
+    }
+  }
+
+  // ===== SMOOTH BG ANIMATION (LERP) =====
+  function animateBg() {
+    const bg = document.querySelector('.timeline-bg');
+    if (!bg) {
+      requestAnimationFrame(animateBg);
+      return;
+    }
+
+    // smooth easing
+    bgCurrent += (bgTarget - bgCurrent) * 0.08;
+
+    bg.style.transform = `translateY(${bgCurrent}%)`;
+
+    requestAnimationFrame(animateBg);
+  }
+
+  // ===== RESIZE =====
+  let resizeTimeout;
+  function onResize() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      updateDimensions();
+      handleScroll();
+    }, 150);
+  }
+
+  // ===== INIT =====
+  updateDimensions();
+  handleScroll();
+  animateBg();
+
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('resize', onResize);
+
+  window.addEventListener('load', () => {
+    updateDimensions();
+    handleScroll();
+  });
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Timeline Journey",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Scrolling Badge Text",
+      "default": "our story",
+      "info": "Text that loops horizontally"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "40+ years of a remarkable journey"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "Get your free quote"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "CTA Button Link",
+      "info": "Leave empty to disable link"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_vector",
+      "label": "Background Vector Image",
+      "info": "Optional decorative background image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline_item",
+      "name": "Timeline Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "year",
+          "label": "Year",
+          "default": "2000"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description Text",
+          "default": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusm doloremque laudtium."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Recommended size: 244x167px"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Timeline Journey",
+      "settings": {
+        "badge_text": "our story",
+        "heading": "40+ years of a remarkable journey",
+        "cta_text": "Get your free quote"
+      },
+      "blocks": [
+        {
+          "type": "timeline_item",
+          "settings": {
+            "year": "1983",
+            "text": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusm doloremque laudtium, totam rem aperiam, eaque ipsa."
+          }
+        },
+        {
+          "type": "timeline_item",
+          "settings": {
+            "year": "1996",
+            "text": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusm doloremque laudtium, totam rem aperiam, eaque ipsa."
+          }
+        },
+        {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2005",
+            "text": "Natus error sit voluptatem accusantium doloremque laudtium."
+          }
+        },
+        {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2013",
+            "text": "Quae ab illoentore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+          }
+        },
+        {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2024",
+            "text": "Soloremque laudtium, totam rem aperiam, eaque ipsa quae ab illoentore veritatis."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

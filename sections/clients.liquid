@@ -1,0 +1,199 @@
+{% schema %}
+{
+  "name": "Client Logo Marquee",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Top Text",
+      "default": "WE'RE PROUD TO PARTNER WITH BEST-IN-CLASS CLIENTS"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Client Logo Marquee"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="clm-section">
+
+  <div class="clm-top">
+    <div class="clm-line"></div>
+    <p>{{ section.settings.heading }}</p>
+  </div>
+
+  <div class="clm-marquee">
+    <div class="clm-track">
+
+      {% for block in section.blocks %}
+        <div class="clm-item">
+          {% if block.settings.logo %}
+            <img src="{{ block.settings.logo | image_url: width: 600 }}">
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <!-- DUPLICATE FOR INFINITE LOOP -->
+      {% for block in section.blocks %}
+        <div class="clm-item">
+          {% if block.settings.logo %}
+            <img src="{{ block.settings.logo | image_url: width: 600 }}">
+          {% endif %}
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+</section>
+
+<style>
+
+/* SECTION */
+.clm-section{
+     padding:0 20px;
+    text-align: center;
+    overflow: hidden;
+    width: 1300px;
+    margin: auto;
+}
+
+/* TOP */
+.clm-top{
+  margin-bottom:40px;
+}
+
+.clm-line{
+  width:100%;
+  height:1px;
+  background:#ddd;
+  margin-bottom:20px;
+}
+
+.clm-top p{
+     font-size: 12px;
+    color: #040404;
+    letter-spacing: 0;
+    font-weight: 600;
+    margin-top: 70px !important;
+}
+
+/* MARQUEE */
+.clm-marquee{
+  overflow:hidden;
+  position:relative;
+}
+
+.clm-track{
+  display:flex;
+  gap:8px;
+  animation:scroll 25s linear infinite;
+}
+
+/* LOGO ITEM */
+.clm-item{
+     min-width: 207px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    transition: 0.3s;
+    background: transparent;
+}
+
+.clm-item img{
+  max-width:100px;
+  max-height:83px;
+  object-fit:contain;
+  filter:grayscale(100%);
+  transition:0.3s;
+}
+
+/* HOVER EFFECT */
+.clm-item:hover{
+  background:#e4ed64;
+}
+
+.clm-item:hover img{
+  filter:grayscale(0%);
+  transform:scale(1.05);
+}
+.clm-item:hover ~ .clm-item,
+.clm-item:hover{
+  animation-play-state: paused;
+}
+
+.clm-marquee:hover .clm-track{
+  animation-play-state: paused;
+}
+/* ANIMATION */
+@keyframes scroll{
+  0%{ transform:translateX(0); }
+  100%{ transform:translateX(-50%); }
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .clm-track{
+    gap:20px;
+  }
+.clm-section {
+padding: 50px 20px 70px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+}
+  .clm-item{
+    min-width:120px;
+    height:90px;
+  }
+.clm-item img {
+    max-width: 100px;
+    max-height: 53px;
+}
+}
+@media(max-width:1024px){
+.clm-section {
+padding: 50px 20px 70px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+}
+}
+@media(max-width:425px){
+.clm-section {
+        padding: 0 20px 70px;
+}
+.clm-item img {
+        max-width: 100px;
+        max-height: 72px;
+}
+.clm-top p {
+    font-size: 12px;
+    color: #040404;
+    letter-spacing: 0;
+    font-weight: 600;
+    margin-top: 50px !important;
+    padding:0;
+}
+.clm-top {
+    margin-bottom: 40px 0;
+}
+}
+</style>

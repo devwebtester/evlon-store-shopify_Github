@@ -1,0 +1,306 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "disabled": true,
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "disabled": true,
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 0,
+        "color_scheme": "",
+        "padding-block-start": 88,
+        "padding-block-end": 80
+      }
+    },
+    "spot_hero_section_BijKxt": {
+      "type": "spot-hero-section",
+      "name": "Spot Hero Section",
+      "settings": {
+        "heading": "Find your spot in the haven you deserve",
+        "description": "We developed landmark real estate projects that deliver lasting value to investors and communities.",
+        "number": "285",
+        "label": "completed projects",
+        "btn_text": "Discover More",
+        "btn_link": "",
+        "video_url": "https://www.youtube.com/watch?v=6y7H8CE8MSw",
+        "bg_bottom": "#f6f3ec",
+        "left_bg_image": "shopify://shop_images/h1_shape.png"
+      }
+    },
+    "spot_about_advanced_MwEMgb": {
+      "type": "spot-about-advanced",
+      "blocks": {
+        "feature_NrwWmA": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/binoculars.png",
+            "title": "Our vision",
+            "desc": "To empower businesses with cutting-edge web solutions that enhance their digital presence and drive growth."
+          }
+        },
+        "feature_tzQ8Q8": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/targeting.png",
+            "title": "Our mission",
+            "desc": "Our solutions are designed to meet the needs of modern enterprises, ensuring they thrive in today’s competitive online landscape."
+          }
+        },
+        "feature_9xtrjD": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/customer.png",
+            "title": "Our values",
+            "desc": "We engage as early as possible, typically during the conceptual or schematic stage."
+          }
+        }
+      },
+      "block_order": [
+        "feature_NrwWmA",
+        "feature_tzQ8Q8",
+        "feature_9xtrjD"
+      ],
+      "name": "Spot About Advanced",
+      "settings": {
+        "subtitle": "• ABOUT US",
+        "heading": "We build more than just structures, we build dreams",
+        "left_image": "shopify://shop_images/h8_img1.jpg"
+      }
+    },
+    "17770139539bcbcc61": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_964dfc7_hb6UeT": {
+          "type": "ai_gen_block_964dfc7",
+          "settings": {
+            "section_padding": 60,
+            "heading": "Global leader in construction & real estate",
+            "heading_size": 70,
+            "heading_color": "#000000",
+            "item_title_size": 20,
+            "item_title_color": "#000000",
+            "active_title_color": "#000000",
+            "number_color": "#000000",
+            "divider_color": "#e6e6e6",
+            "arrow_bg_color": "#ffffff",
+            "arrow_icon_color": "#000000",
+            "hover_arrow_bg_color": "#e4ed64",
+            "active_arrow_bg_color": "#e4ed64",
+            "active_arrow_icon_color": "#000000",
+            "card_bg_color": "#1a1a1a",
+            "card_border_radius": 16,
+            "description_size": 22,
+            "description_color": "#ffffff",
+            "image_border_radius": 24,
+            "service_1_title": "Real Estate Development",
+            "service_1_description": "<p>We engage as early as possible, typically during the conceptual or schematic stage.                    <br/><br/></p>",
+            "service_1_image": "shopify://shop_images/service1-1024x683.jpg",
+            "service_2_title": "Real estate development",
+            "service_2_description": "<p>Comprehensive real estate development solutions from planning to execution.</p>",
+            "service_2_image": "shopify://shop_images/service2-1024x683.jpg",
+            "service_3_title": "Project management",
+            "service_3_description": "<p>Expert project management ensuring timely delivery and quality standards.</p>",
+            "service_3_image": "shopify://shop_images/service3-1024x683.jpg",
+            "service_4_title": "Construction Management",
+            "service_4_description": "<p>From design to operations, we love to solve complex challenges and exceed expectations.</p>",
+            "service_4_image": "shopify://shop_images/service4-1024x683.jpg",
+            "service_5_title": "Architecture & Design",
+            "service_5_description": "<p>We believe good architecture is a crucial foundation that influences the overall performance of a real estate...</p>",
+            "service_5_image": "shopify://shop_images/service5-1024x683.jpg"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_964dfc7_hb6UeT"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-3",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 19,
+        "toggle_overlay": false,
+        "overlay_color": "#797e2c",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "spot_recognition_jJ7GKU": {
+      "type": "spot-recognition",
+      "blocks": {
+        "award_Qw7YCA": {
+          "type": "award",
+          "settings": {
+            "icon": "shopify://shop_images/thropy.png",
+            "title": "Sustainable Design Award",
+            "year": "2020"
+          }
+        },
+        "award_6dpfgr": {
+          "type": "award",
+          "settings": {
+            "icon": "shopify://shop_images/thropy.png",
+            "title": "Best Residential Design",
+            "year": "2018"
+          }
+        },
+        "award_6egCGG": {
+          "type": "award",
+          "settings": {
+            "icon": "shopify://shop_images/thropy.png",
+            "title": "Top Commercial Design",
+            "year": "2020"
+          }
+        },
+        "award_xCTwJN": {
+          "type": "award",
+          "settings": {
+            "icon": "shopify://shop_images/thropy.png",
+            "title": "Emerging Designer of the Year",
+            "year": "2022"
+          }
+        }
+      },
+      "block_order": [
+        "award_Qw7YCA",
+        "award_6dpfgr",
+        "award_6egCGG",
+        "award_xCTwJN"
+      ],
+      "name": "Spot Recognition Advanced",
+      "settings": {
+        "subtitle": "• AWARDS",
+        "heading": "Recognitions we got",
+        "desc": "We are a developer invested in our customers’ success and improving the communities we serve."
+      }
+    },
+    "spot_services_accordion_T8TnMw": {
+      "type": "spot-services-accordion",
+      "blocks": {
+        "item_X77fYn": {
+          "type": "item",
+          "settings": {
+            "number": "01.",
+            "title": "Real Estate Development",
+            "description": "We engage as early as possible, typically during the conceptual or schematic stage.",
+            "image": "shopify://shop_images/service1-1024x683_b592b5f9-1b43-4347-93d4-4c3a8a794f69.jpg",
+            "link": "#"
+          }
+        },
+        "item_Ge8rFm": {
+          "type": "item",
+          "settings": {
+            "number": "02.",
+            "title": "Project Management",
+            "description": "Our comprehensive estimates also reflect available lower-price options.",
+            "image": "shopify://shop_images/service3-1024x683_b855175f-cd53-48ed-a231-e9603ebd507a.jpg",
+            "link": "#"
+          }
+        },
+        "item_pTDiUk": {
+          "type": "item",
+          "settings": {
+            "number": "03.",
+            "title": "Investment & Capital",
+            "description": "We are focused on improving the way capital projects get done.",
+            "image": "shopify://shop_images/service3-1024x683_b855175f-cd53-48ed-a231-e9603ebd507a.jpg",
+            "link": "#"
+          }
+        },
+        "item_d6dqWm": {
+          "type": "item",
+          "settings": {
+            "number": "04.",
+            "title": "Construction Management",
+            "description": "From design to operations, we love to solve complex challenges and exceed expectations.",
+            "image": "shopify://shop_images/service4-1024x683.jpg",
+            "link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "item_X77fYn",
+        "item_Ge8rFm",
+        "item_pTDiUk",
+        "item_d6dqWm"
+      ],
+      "name": "Diverse Expertise",
+      "settings": {
+        "subtitle": "DO • WHAT WE DO",
+        "heading": "Diverse practical expertise",
+        "view_all_link": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "spot_hero_section_BijKxt",
+    "spot_about_advanced_MwEMgb",
+    "17770139539bcbcc61",
+    "spot_recognition_jJ7GKU",
+    "spot_services_accordion_T8TnMw"
+  ]
+}

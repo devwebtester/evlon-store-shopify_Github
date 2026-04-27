@@ -1,0 +1,327 @@
+{% schema %}
+{
+  "name": "Spot About Advanced",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle (Marquee)",
+      "default": "ABOUT US"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We build more than just structures, we build dreams"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "desc", "label": "Description" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    { "name": "Spot About Advanced" }
+  ]
+}
+{% endschema %}
+
+<section class="spot-about">
+
+  <!-- SUBTITLE -->
+  <div class="spot-about-subcontainer">
+  <div class="spot-about-sub">
+  <div class="marquee-about">
+    <span>{{ section.settings.subtitle }}</span>
+    <span>{{ section.settings.subtitle }}</span>
+    <span>{{ section.settings.subtitle }}</span>
+  </div>
+</div>
+</div>
+  <div class="spot-about-container">
+
+    <!-- LEFT -->
+    <div class="spot-about-left">
+
+      <h2>{{ section.settings.heading }}</h2>
+  <div class="spot-about-content">
+      <div class="spot-about-image-wrap">
+        <div class="bg-shape"></div>
+
+        {% if section.settings.left_image %}
+          <img src="{{ section.settings.left_image | image_url: width: 600 }}">
+        {% endif %}
+      </div>
+
+      <div class="spot-about-features">
+        {% for block in section.blocks %}
+        <div class="feature">
+          {% if block.settings.icon %}
+            <img src="{{ block.settings.icon | image_url: width: 50 }}">
+          {% endif %}
+          <div>
+            <h4>{{ block.settings.title }}</h4>
+            <p>{{ block.settings.desc }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    </div>
+
+    <!-- RIGHT CARD -->
+    <div class="spot-about-right">
+
+      <div class="quote-card">
+
+        <div class="quote-img">
+          <img src="https://cdn.shopify.com/s/files/1/0676/0736/3839/files/journey_1996.png?v=1776767532" alt="">
+        </div>
+
+        <h3>
+          “With over 35 years of experience, we are committed to delivering quality & innovation.”
+        </h3>
+
+        <p class="author">Founder & CEO</p>
+        <h4>Dennis Daniels</h4>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+.spot-about {
+  padding: 80px 20px;
+}
+
+/* MARQUEE */
+/* SMALL PILL */
+.spot-about-subcontainer{
+  max-width: 1300px;
+    margin: auto;
+}
+.spot-about-sub {
+  width:9%;
+  margin:25px 0;
+  display: inline-block;
+  border: 1px solid #cddc39;
+  border-radius: 50px;
+  overflow: hidden;
+  padding: 4px 14px;
+  background: #fff;
+}
+
+/* MARQUEE TRACK */
+.marquee-about {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  white-space: nowrap;
+  animation: marqueeScroll 6s linear infinite;
+}
+
+/* TEXT STYLE */
+.marquee-about span {
+  font-size: 13px;   /* 👈 SMALL TEXT */
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #000;
+}
+
+/* SMOOTH LOOP */
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* LAYOUT */
+.spot-about-container {
+  display: grid;
+  grid-template-columns: 1.2fr 0.6fr;
+  gap: 40px;
+  max-width: 1300px;
+  margin: auto;
+}
+
+/* LEFT */
+.spot-about-content{
+      display: grid;
+  grid-template-columns: 1fr 1fr;
+    gap:30px;
+}
+.spot-about-left h2 {
+     font-size: 63px;
+    margin-bottom: 57px;
+    width: 610px;
+}
+.feature img {
+    width: 16%;
+    height: 27%;
+}
+.spot-about-features {
+padding-left: 15px;
+    gap: 24px;
+    display: flex;
+    flex-direction: column;
+}
+.spot-about-image-wrap {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+/* WHITE SHAPE */
+.bg-shape {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 40px;
+  z-index: 0;
+}
+
+.spot-about-image-wrap img {
+  position: relative;
+  border-radius: 20px;
+  z-index: 2;
+  width: 100%;
+}
+
+/* FEATURES */
+.feature {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.feature h4 {
+  margin-bottom: 5px;
+  font-size:26px;
+}
+
+/* RIGHT */
+.quote-card {
+      background: url(https://cdn.shopify.com/s/files/1/0676/0736/3839/files/h4-vector.png?v=1776849050), #e4ed64;
+    padding: 40px;
+    background-position: 179px 45px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+  border-radius: 30px;
+  position: relative;
+}
+.spot-about-features p {
+    font-size: 18px;
+    line-height: 23px;
+}
+.quote-img img {
+  width: 230px;
+margin-top: -94px;
+}
+
+.quote-card h3 {
+ font-size: 34px;
+    margin-bottom: 80px;
+    line-height: 37px;
+}
+
+.author {
+  font-size: 12px;
+  opacity: 0.7;
+  margin:0;
+      text-transform: uppercase;
+}
+.quote-card h4{
+    font-size:26px;
+    color:#000;
+    margin:10px 0 0;
+}
+/* RESPONSIVE */
+@media(max-width: 1024px){
+.spot-about-left h2 {
+    font-size: 56px;
+    margin-bottom: 45px;
+    padding-bottom:30px;
+}
+.spot-about-container{
+  gap:25px;
+}
+.spot-about-sub {
+    width: 12%;
+}
+.spot-about-content{
+  gap:12px;
+  grid-template-columns:1.2fr 1.5fr;
+}
+.quote-card h3 {
+    font-size: 25px;
+    margin-bottom: 80px;
+    line-height: 30px;
+}
+.quote-card{
+  padding:29px;
+}
+.spot-about-image-wrap img {
+      height: 471px;
+    object-fit: cover;
+}
+}
+@media(max-width: 992px){
+  .spot-about {
+    padding: 40px 20px;
+}
+  .spot-about-container {
+    grid-template-columns: 1fr;
+  }
+  .spot-about-sub {
+    width: 17%;
+}
+  .spot-about-left h2{
+    margin-bottom: 14px;
+  }
+}
+@media(max-width: 430px){
+ .spot-about-left h2{
+    font-size: 42px;
+    width:100%;
+  }
+  .spot-about-content {
+        gap: 0px;
+        grid-template-columns: 1fr;
+    }
+    .spot-about-image-wrap img {
+      height:auto;
+width:100;
+}
+.spot-about-container{
+  gap:60px;
+}
+.feature img {
+    width: auto;
+    height: 35%;
+}
+.spot-about-sub {
+    width: 31%;
+}
+.spot-about-features{
+  padding-left:0;
+}
+}
+</style>

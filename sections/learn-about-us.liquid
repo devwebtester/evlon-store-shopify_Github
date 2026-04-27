@@ -1,0 +1,393 @@
+{% schema %}
+{
+  "name": "Learn About Fixed",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Top Badge Text",
+      "default": "COMPANY • COMPANY • COMPANY"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Learn more about us"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "01."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "desc",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "btn",
+          "label": "Button Text",
+          "default": "Read More"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "pos",
+          "label": "Content Position",
+          "options": [
+            { "value": "top", "label": "Top" },
+            { "value": "bottom", "label": "Bottom" }
+          ],
+          "default": "bottom"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Card Style",
+          "options": [
+            { "value": "normal", "label": "Normal (full bg)" },
+            { "value": "center", "label": "Center Card (image bottom)" }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "color",
+          "id": "bg",
+          "label": "Background Color",
+          "default": "#0e1a0e"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Text Color",
+          "default": "#ffffff"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Learn About Fixed"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="about-fixed">
+  <div class="wrap">
+
+ <div class="badge2">
+  <div class="marquee2">
+    <span>{{ section.settings.badge }}</span>
+    <span>{{ section.settings.badge }}</span>
+  </div>
+</div>
+    <h2>{{ section.settings.heading }}</h2>
+
+    <div class="grid">
+      {% for block in section.blocks %}
+      <div class="card pos-{{ block.settings.pos }} style-{{ block.settings.style }}"
+        style="background:{{ block.settings.bg }}; color:{{ block.settings.color }}">
+
+        {% if block.settings.style == 'normal' and block.settings.image != blank %}
+        <div class="bg">
+          <img src="{{ block.settings.image | image_url: width: 900 }}">
+        </div>
+        {% endif %}
+<div class="top-line">
+            <span>{{ block.settings.number }}</span>
+            <div class="line"></div>
+          </div>
+        <div class="content">
+          
+
+          <div class="text">
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.desc }}</p>
+            <a href="{{ block.settings.link }}">{{ block.settings.btn }}</a>
+          </div>
+        </div>
+
+        {% if block.settings.style == 'center' and block.settings.image != blank %}
+       <div class="bottom-img">
+  <img src="{{ block.settings.image | image_url: width: 600 }}">
+  <div class="overlay bottom-overlay"></div>
+</div>
+        {% endif %}
+
+        <div class="cut"></div>
+        <a href="{{ block.settings.link }}" class="arrow">➚</a>
+
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.about-fixed { 
+    padding:150px 20px 200px; 
+}
+.wrap { max-width:1290px; margin:auto; }
+.badge2 {
+  border:1px solid #cddc39;
+  border-radius:30px;
+  overflow:hidden;
+  display:inline-block;
+  max-width: 140px;
+}
+
+/* marquee container */
+.marquee2 {
+  display: flex;
+  gap: 40px;
+    font-weight: 600;
+    text-transform:uppercase;
+  white-space: nowrap;
+  animation: marqueeScroll 10s linear infinite;
+  padding:6px 18px;
+  font-size:12px;
+  letter-spacing:1px;
+}
+
+
+/* smooth loop */
+.marquee2 span {
+  flex-shrink: 0;
+}
+
+/* animation */
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+.about-fixed h2 { 
+    font-size: 70px;
+    margin: 20px 0 50px;
+    color: #000;
+    max-width: 30%;
+}
+.grid {
+  display:flex;
+  flex-direction:row;
+  gap:30px;
+  margin: auto;
+    justify-content: center;
+}
+/* Hide overlay by default */
+.overlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  background:#000;
+}
+
+/* Show ONLY on 3rd card */
+.grid .card:nth-child(3) .bg {
+position: absolute;
+    inset: 0;
+    background: #000;
+    opacity: 0.4;
+}
+.about-fixed .grid .card.pos-top .line {
+    background: #000 !important;
+}
+.about-fixed .grid .card.pos-top .top-line span {
+    color: #000 !important;
+}
+.grid .card:nth-child(2) .content{
+    color: #000;
+}
+.grid .card:nth-child(2) .text a{
+    color: #000;
+}
+.grid .card:nth-child(1) .top-line span{
+    color:#e4ed64;
+}
+.grid .card:nth-child(3) .top-line span{
+    color:#e4ed64;
+    opacity:.9;
+}
+.card {
+  position:relative;
+    border-radius: 25px;
+    overflow: hidden;
+    padding: 40px 40px 60px 40px;
+    min-height: 500px;
+    display: flex;
+    width: 410.77px;
+}
+
+/* FIXED positioning */
+.card.pos-top {
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.card.pos-bottom {
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bg {
+    position: absolute;
+    bottom: -9%;
+    left: -9%;
+}
+.bg img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.content {
+  position:relative;
+  z-index:2;
+}
+
+.top-line span { font-size:12px; font-weight:500;}
+.top-line .line {
+  height:1px;
+  background:#fff;
+  margin-top:8px;
+}
+
+.text h3 { font-size:36px; margin:20px 0 10px; }
+.text p { 
+    font-size: 18px;
+    opacity: .8;
+    line-height: 26px;
+    margin:0 0 7px;
+}
+.text a { margin-top:15px; display:inline-block; text-decoration:underline; color:#fff; font-weight:600;}
+
+/* center image fix */
+.bottom-img {
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+}
+.bottom-img img {
+  width:100%;
+  height:auto;
+}
+
+/* cut */
+.cut {
+position: absolute;
+    bottom: -8px;
+    right: -2px;
+    width: 76px;
+    height: 79px;
+    background: #ffffff;
+    border-top-left-radius: 67px;
+}
+.about-fixed .card:hover a.arrow {
+    background:#000;
+    color:#fff;
+    transition:0.4s ease;
+}
+/* arrow */
+.arrow {
+position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 21px;
+    width: 47px;
+    height: 47px;
+    background: #cddc39;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card.pos-bottom .arrow:hover{
+    background:#000;
+    color:#fff;
+}
+@media(max-width:992px){
+  .grid { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:480px){
+    .about-fixed {
+        padding: 50px 20px 70px;
+    }
+  .grid { 
+    display:grid;
+    grid-template-columns:1fr; 
+}
+  .about-fixed h2{
+    font-size: 56px;
+       max-width: 100% !important;
+  }
+  .bg {
+    position: absolute;
+    bottom: -26% !important;
+  }
+ .card{
+min-height: 400px !important;
+    width: 100%;}
+}
+@media (max-width: 768px) {
+    .about-fixed h2 {
+        font-size: 56px;
+        margin: 20px 0 40px;
+    }
+    .text h3{
+        font-size:32px;
+    }
+}
+@media(max-width:1024px){
+.about-fixed h2{
+    font-size: 56px;
+    margin: 20px 0 40px;
+    max-width: 46%;
+}
+.about-fixed {
+    padding: 80px 20px 130px;
+}
+.card{
+padding: 30px 15px 50px 15px;
+    min-height: 450px;}
+}
+.bg {
+    position: absolute;
+    bottom: -16%;
+    left: -24%;
+}
+.cut {
+    position: absolute;
+    bottom: -8px;
+    right: -2px;
+    width: 62px;
+    height: 68px;
+    background: #ffffff;
+    border-top-left-radius: 42px;
+}
+}
+</style>

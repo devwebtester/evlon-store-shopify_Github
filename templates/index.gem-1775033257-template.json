@@ -1,0 +1,162 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "pagefly-home": {
+      "type": "pagefly-home",
+      "disabled": true,
+      "settings": {}
+    },
+    "scroll_image_slider_KJEWgH": {
+      "type": "scroll-image-slider",
+      "blocks": {
+        "item_3BiyHk": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Website_Sensous_Sense_8oz.webp",
+            "heading": "Designed to Illuminate Elegantly",
+            "text": "A modern wall light crafted to deliver a refined glow.\n<br><br>\nIts sleek design and dual-direction lighting create a perfect harmony of brightness and shadow.",
+            "btn_text": "",
+            "btn_link": ""
+          }
+        },
+        "item_9kENBJ": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Website_Sensous_Heat.webp",
+            "heading": "Create a Lasting Impression",
+            "text": "Transform any space with a warm, cinematic ambiance.<br><br>\nWhether indoors or outdoors, this light adds depth, mood, and a premium feel to every wall.",
+            "btn_text": "",
+            "btn_link": ""
+          }
+        },
+        "item_UGWMnz": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Homepage_Milk.webp",
+            "heading": "Lighting That Feels Incomplete",
+            "text": "Most spaces lack the perfect balance of light and shadow.<br><br>\nOrdinary lighting fails to create depth, leaving your interiors dull and without character.",
+            "btn_text": "Learn about us",
+            "btn_link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "item_3BiyHk",
+        "item_9kENBJ",
+        "item_UGWMnz"
+      ],
+      "name": "Scroll Image Text",
+      "settings": {}
+    },
+    "custom_vertical_AFW4wU": {
+      "type": "custom-vertical",
+      "blocks": {
+        "item_PFqAtL": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/img-1-5.webp",
+            "title": "Necklaces",
+            "text": "Explore our exquisite necklace collection, designed to elevate any outfit with delicate chains and bold pieces, all crafted with quality."
+          }
+        },
+        "item_XhkpTC": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/img-1-6.jpg",
+            "title": "Bracelets",
+            "text": "Stylish adornments that elevate your look. Available in numerous designs from minimalist to bold ideal for showcasing personal taste and creativity."
+          }
+        },
+        "item_amrNth": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/img-1-7.webp",
+            "title": "Rings",
+            "text": "Stylish accessories that enhance outfits, available in various materials and designs. Perfect for expressing style or as meaningful gifts."
+          }
+        },
+        "item_zxrJew": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/img-1-8.webp",
+            "title": "Earrings",
+            "text": "Elegant pieces of jewelry that symbolize love or personal style. Available in diverse designs, they add sophistication to any look."
+          }
+        }
+      },
+      "block_order": [
+        "item_PFqAtL",
+        "item_XhkpTC",
+        "item_amrNth",
+        "item_zxrJew"
+      ],
+      "name": "Vertical Gallery",
+      "settings": {
+        "subtitle": "COLLECTION",
+        "title": "Discover The Beauty In Our Gallery"
+      }
+    },
+    "why_choose_EYRcLD": {
+      "type": "why-choose",
+      "blocks": {
+        "item_kjcPaT": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/5_1.png",
+            "title": "Premium Quality",
+            "text": "Dazzle with our exclusive jewelry collection, designed to make you shine. Each unique piece combines artistry and elegance, perfect for any occasion."
+          }
+        },
+        "item_xUYCFq": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/4_1.png",
+            "title": "Visible Results",
+            "text": "We deliver high quality products.See noticeable improvements in your skin within just a few weeks of use."
+          }
+        },
+        "item_xUtLtT": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/3_1.png",
+            "title": "Easy Daily Routine",
+            "text": "We deliver high quality products.Simple to use and fits perfectly into your everyday skincare routine.Simple to use and fits perfectly into your everyday."
+          }
+        },
+        "item_WJfUzE": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/2_1.png",
+            "title": "Free-shipping",
+            "text": "Designed to focus on problem areas and deliver effective transformation.We deliver high quality products."
+          }
+        }
+      },
+      "block_order": [
+        "item_kjcPaT",
+        "item_xUYCFq",
+        "item_xUtLtT",
+        "item_WJfUzE"
+      ],
+      "name": "Why Choose Premium",
+      "settings": {
+        "heading": "Why Choose Us",
+        "subtext": "We provide premium experience"
+      }
+    }
+  },
+  "order": [
+    "pagefly-home",
+    "scroll_image_slider_KJEWgH",
+    "custom_vertical_AFW4wU",
+    "why_choose_EYRcLD"
+  ]
+}

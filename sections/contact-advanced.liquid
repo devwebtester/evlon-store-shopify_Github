@@ -1,0 +1,418 @@
+{% schema %}
+{
+  "name": "Contact Advanced",
+  "settings": [
+    { "type": "image_picker", "id": "bg_image", "label": "Background Image" },
+ { "type": "text", "id": "mini_text4", "label": "Mini Text4", "default": "QUICK • ENQUIRY" },
+    { "type": "text", "id": "subtitle", "label": "Top Text", "default": "QUICK • ENQUIRY" },
+  
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Get specialist advice for residential, commercial or property" },
+
+    { "type": "text", "id": "btn_text", "label": "Button Text", "default": "Get A Call Back" }
+  ],
+  "presets": [
+    { "name": "Contact Advanced" }
+  ]
+}
+{% endschema %}
+
+<section class="contact-adv" style="background-image:url({{ section.settings.bg_image | image_url: width: 2000 }});">
+
+  <div class="contact-overlay"></div>
+
+  <div class="contact-box">
+    <img class="contact-side left" src="https://cdn.shopify.com/s/files/1/0676/0736/3839/files/h1_shape.png?v=1775036951" alt="">
+<img class="contact-side right" src="https://cdn.shopify.com/s/files/1/0676/0736/3839/files/h1_shape.png?v=1775036951" alt="">
+<!-- SUBTITLE -->
+ <div class="abx-left4">
+        <div class="abx-marquee4">
+          <div class="abx-track4">
+            {% for i in (1..12) %}
+              <span>{{ section.settings.mini_text4 }}</span>
+              <span class="dot4">•</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+<!-- HEADING -->
+<h2 class="contact-title">
+  {{ section.settings.heading }}
+</h2>
+
+<!-- SHOPIFY FORM -->
+{% form 'contact' %}
+  
+  <div class="form-row">
+
+    <input type="text" name="contact[name]" placeholder="Your Name*" required>
+    <input type="email" name="contact[email]" placeholder="Email*" required>
+  </div>
+
+  <div class="form-row">
+    <input type="text" name="contact[phone]" placeholder="Phone Number*">
+    
+    <select name="contact[inquiry]">
+      <option>You inquiry about...</option>
+      <option>Residential</option>
+      <option>Commercial</option>
+      <option>Property</option>
+    </select>
+  </div>
+
+  <div class="form-bottom">
+    <p>
+      We're excited to connect with you!<br>
+      Required fields are marked *
+    </p>
+
+   <button type="submit" class="cta-btn-x">
+  <span class="cta-text-x">{{ section.settings.btn_text }}</span>
+
+  <span class="cta-icon-wrap-x">
+    <span class="cta-icon-main-x">➚</span>
+    <span class="cta-icon-hover-x">➚</span>
+  </span>
+</button>
+  </div>
+
+  {% if form.posted_successfully? %}
+    <p class="form-success">Thank you! We'll contact you soon.</p>
+  {% endif %}
+
+  {% if form.errors %}
+    <div class="form-error">
+      {{ form.errors | default_errors }}
+    </div>
+  {% endif %}
+
+{% endform %}
+
+
+  </div>
+
+</section>
+
+<style>
+
+/* SECTION */
+.contact-adv{
+  padding:100px 20px;
+  background-size:cover;
+  background-position:center;
+  border-radius:30px;
+  position:relative;
+  margin: 30px 89px;
+}
+
+  .abx-marquee4 {
+  overflow: hidden;
+  border: 1px solid #d4ff3f;
+  border-radius: 30px;
+  padding: 6px 15px;
+      margin: 0 0 30px 0;
+}
+.abx-left4 {
+    width: 21%;
+}
+.abx-track4 {
+  display: flex;
+  gap: 15px;
+  white-space: nowrap;
+  animation: abxScroll 2s linear infinite;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@keyframes abxScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+/* DARK OVERLAY */
+.contact-overlay{
+  position:absolute;
+  inset:0;
+  background:rgb(0 0 0 / 31%);
+  border-radius:30px;
+}
+.contact-box{
+  position:relative;
+  overflow:hidden; /* IMPORTANT */
+}
+
+/* SIDE BG IMAGES INSIDE WHITE BOX */
+.contact-side{
+  position:absolute;
+  bottom:0;
+  max-width: 48%;
+    height: auto;
+  opacity:2.08;
+  z-index:0;
+  pointer-events:none;
+  transition: transform 0.2s linear;
+}
+
+.contact-side.left{
+  left: -190px;
+}
+
+.contact-side.right{
+  right:-190px;
+}
+/* BOX */
+.contact-box{
+  max-width:1269px;
+  margin:auto;
+  background:#fff;
+  border-radius:30px;
+  padding:90px 310px;
+  text-align:center;
+  position:relative;
+  z-index:2;
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* SUBTITLE */
+.contact-sub{
+  display:inline-block;
+  font-size:12px;
+  padding:6px 14px;
+  border:1px solid #d4e157;
+  border-radius:20px;
+  margin-bottom:20px;
+}
+
+/* TITLE */
+.contact-title{
+      font-size: 36px;
+    font-weight: 600;
+    margin: 0;
+    padding-bottom: 30px;
+  line-height:1.3;
+  color:#000;
+}
+
+/* FORM */
+.form-row{
+  display:flex;
+  gap:35px;
+  margin-bottom:27px;
+}
+
+.form-row input,
+.form-row select{
+  width:100%;
+  padding:20px 60px 20px 30px;
+  border:none;
+  border-radius:30px;
+  background:#f2f2f2;
+  outline:none;
+  font-size:14px;
+}
+
+/* BOTTOM */
+.form-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:20px;
+}
+
+.form-bottom p{
+    font-size: 18px;
+    text-align: left;
+    color: #4b4b4b;
+}
+
+/* MAIN BUTTON */
+.cta-btn-x{
+  display:inline-flex;
+  align-items:center;
+  gap:20px;
+  background:#e4ed64;
+  padding:6px 6px 6px 23px;
+  border-radius:40px;
+  border:none;
+  cursor:pointer;
+  overflow:hidden;
+  position:relative;
+  font-weight:600;
+  transition:all 0.3s ease;
+}
+
+/* TEXT */
+.cta-text-x{
+  position:relative;
+  z-index:2;
+      font-size: 14px;
+}
+
+/* ICON WRAP */
+.cta-icon-wrap-x{
+  position:relative;
+  width:50px;
+  height:50px;
+  background:#fff;
+  border-radius:50%;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ICON BASE */
+.cta-icon-main-x,
+.cta-icon-hover-x{
+   position:absolute;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:100%;
+  font-size:19px;
+  transition:transform 0.35s ease;
+}
+
+/* DEFAULT STATE */
+.cta-icon-main-x{
+  transform:translate(0,0);
+}
+
+.cta-icon-hover-x{
+  transform:translate(-100%,100%);
+  color: #000;
+}
+
+/* HOVER ANIMATION */
+.cta-btn-x:hover .cta-icon-main-x{
+  transform:translate(100%,-100%);
+}
+
+.cta-btn-x:hover .cta-icon-hover-x{
+  transform:translate(0,0);
+}
+
+/* BUTTON HOVER */
+.cta-btn-x:hover{
+  background:#000;
+  color:#fff;
+  transform:translateY(-2px);
+}
+/* SUCCESS */
+.form-success{
+  margin-top:15px;
+  color:green;
+}
+
+/* ERROR */
+.form-error{
+  color:red;
+  margin-top:15px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+.contact-adv {
+    padding: 40px 20px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    position: relative;
+    margin: 30px 70px;
+}
+  .contact-box{
+    padding:40px 20px;
+  }
+
+  .contact-title{
+    font-size:36px;
+  }
+}
+@media(max-width:430px){
+.contact-adv {
+    padding: 50px 15px !important;
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    position: relative;
+    margin: 30px 0px 70px;
+}
+.contact-box{
+    padding:40px 20px;
+}
+
+.contact-title{
+   font-size: 34px;
+ line-height: 35px;
+ padding-bottom:40px;
+}
+form#contact_form {
+    width: 100%;
+}
+  .form-row{
+    flex-direction:column;
+    display: flex;
+    gap: 15px;
+    margin-top:-10px;
+  }
+.abx-left4 {
+    width: 30%;
+}
+  .form-bottom{
+    flex-direction:column;
+    gap:20px;
+    align-items:flex-start;
+  }
+  .contact-box {
+        max-width: 1269px;
+        margin: auto;
+        background: #fff;
+        border-radius: 30px;
+        padding: 51px 15px;
+    }
+}
+@media(max-width:1024px){
+.contact-box {
+    max-width: 1269px;
+    margin: auto;
+    background: #fff;
+    border-radius: 30px;
+    padding: 50px 25px;
+}
+.contact-adv {
+    padding: 70px 40px;
+    margin:0 20px;
+}
+}
+</style>
+<script>
+let current = 0;
+let target = 0;
+
+document.addEventListener("scroll", () => {
+  const section = document.querySelector(".contact-box");
+  if(!section) return;
+
+  const rect = section.getBoundingClientRect();
+  target = (window.innerHeight - rect.top) * 0.15;
+});
+
+function smoothAnimation() {
+  const leftImg = document.querySelector(".contact-side.left");
+  const rightImg = document.querySelector(".contact-side.right");
+
+  // smooth easing (LERP)
+  current += (target - current) * 0.08;
+
+  if(leftImg && rightImg){
+    leftImg.style.transform = `translateX(-${current}px)`;
+    rightImg.style.transform = `translateX(${current}px) scaleX(-1)`;
+  }
+
+  requestAnimationFrame(smoothAnimation);
+}
+
+smoothAnimation();
+</script>

@@ -1,0 +1,443 @@
+{% schema %}
+{
+  "name": "Spot Recognition Advanced",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "• AWARDS • AWARDS •"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Recognitions we got"
+    },
+    {
+      "type": "textarea",
+      "id": "desc",
+      "label": "Description",
+      "default": "We are a developer invested in our customers’ success and improving the communities we serve."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "award",
+      "name": "Award",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "text", "id": "year", "label": "Year" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    { "name": "Spot Recognition Advanced" }
+  ]
+}
+{% endschema %}
+
+<section class="spot-recognition-adv">
+
+  <!-- SUBTITLE -->
+  <div class="spot-sub">
+    <div class="marquee-left">
+      <span>{{ section.settings.subtitle }}</span>
+      <span>{{ section.settings.subtitle }}</span>
+    </div>
+  </div>
+
+  <!-- HEADING -->
+  <div class="spot-head">
+    <h2>{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.desc }}</p>
+  </div>
+
+  <!-- ROW 1 (LEFT SCROLL) -->
+  <div class="marquee-row">
+    <div class="marquee-track left">
+
+      {% for block in section.blocks %}
+        <div class="award">
+          <div class="icon">
+            {% if block.settings.icon %}
+              <img src="{{ block.settings.icon | image_url: width: 40 }}">
+            {% endif %}
+          </div>
+          <h4>{{ block.settings.title }}</h4>
+          <span>{{ block.settings.year }}</span>
+        </div>
+      {% endfor %}
+
+      {% for block in section.blocks %}
+        <div class="award">
+          <div class="icon">
+            {% if block.settings.icon %}
+              <img src="{{ block.settings.icon | image_url: width: 40 }}">
+            {% endif %}
+          </div>
+          <h4>{{ block.settings.title }}</h4>
+          <span>{{ block.settings.year }}</span>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+  <!-- ROW 2 (RIGHT SCROLL) -->
+  <div class="marquee-row">
+    <div class="marquee-track right">
+
+      {% for block in section.blocks %}
+        <div class="award">
+          <div class="icon">
+            {% if block.settings.icon %}
+              <img src="{{ block.settings.icon | image_url: width: 40 }}">
+            {% endif %}
+          </div>
+          <h4>{{ block.settings.title }}</h4>
+          <span>{{ block.settings.year }}</span>
+        </div>
+      {% endfor %}
+
+      {% for block in section.blocks %}
+        <div class="award">
+          <div class="icon">
+            {% if block.settings.icon %}
+              <img src="{{ block.settings.icon | image_url: width: 40 }}">
+            {% endif %}
+          </div>
+          <h4>{{ block.settings.title }}</h4>
+          <span>{{ block.settings.year }}</span>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+</section>
+
+<style>
+.spot-recognition-adv {
+  padding: 80px 20px;
+  text-align: center;
+      max-width: 1290px;
+    margin: auto;
+}
+
+/* SUBTITLE */
+.spot-sub {
+  display: inline-block;
+  border: 1px solid #cddc39;
+  border-radius: 50px;
+  overflow: hidden;
+  padding: 6px 18px;
+  margin-bottom: 20px;
+  width:9%;
+}
+/* WRAPPER MUST BE RELATIVE */
+.marquee-row {
+  position: relative;
+  overflow: hidden;
+}
+
+/* LEFT FADE */
+.marquee-row::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to right, #fff 0%, rgba(255,255,255,0) 100%);
+}
+
+/* RIGHT FADE */
+.marquee-row::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to left, #fff 0%, rgba(255,255,255,0) 100%);
+}
+.marquee-left {
+  display: flex;
+  gap: 30px;
+  white-space: nowrap;
+  animation: textLeft 6s linear infinite;
+}
+
+.marquee-left span {
+  font-size: 13px;
+}
+
+/* HEADING */
+.spot-head h2 {
+      font-size: 70px;
+    max-width: 500px;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    color: #000;
+    padding-bottom: 20px;
+    line-height: 75px;
+
+}
+
+.spot-head p {
+ font-size: 22px;
+    max-width: 700px;
+    font-weight: 600;
+    margin: auto;
+    color: #4b4b4b;
+    padding-bottom:25px;
+}
+
+/* ROW */
+.marquee-row {
+  overflow: hidden;
+  margin-top: 30px;
+}
+
+/* TRACK */
+.marquee-track {
+  display: flex;
+  gap: 30px;
+}
+
+.marquee-track.left {
+  animation: scrollLeft 25s linear infinite;
+}
+
+.marquee-track.right {
+  animation: scrollRight 25s linear infinite;
+}
+
+/* STOP ON HOVER */
+.marquee-row:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* CARD */
+.award {
+  min-width: 587px;
+  padding: 8px 50px 8px 12px;
+  border-radius: 50px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #fff;
+  transition: 0.3s;
+}
+
+/* ICON */
+.icon {
+  width: 64px;
+  height: 64px;
+  background: #d9e34b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon img {
+  width: 29px;
+}
+
+/* TEXT */
+.award h4 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.award span {
+  margin-left: auto;
+  font-size: 16px;
+  color: #8a8a8a;
+  border-left: 1px solid #d3d3d3;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    font-weight:600;
+}
+
+/* HOVER ACTIVE STYLE */
+.award:hover {
+  background: #d9e34b;
+}
+
+.award:hover .icon {
+  background: #fff;
+}
+
+.award:hover .icon img {
+  filter: brightness(0);
+}
+
+/* ANIMATION */
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes scrollRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes textLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+
+/* ===============================
+   1024px (TABLET LANDSCAPE)
+=================================*/
+@media (max-width: 1024px) {
+
+  .spot-recognition-adv {
+    padding: 60px 20px;
+  }
+
+  .spot-head h2 {
+    font-size: 56px;
+    line-height: 54px;
+    max-width: 420px;
+  }
+
+  .spot-head p {
+    font-size: 22px;
+    max-width: 520px;
+  }
+
+  .spot-sub {
+    width: auto; /* 🔥 FIX */
+  }
+
+  .award {
+    min-width: 500px;
+    padding: 10px 30px;
+  }
+
+  .award h4 {
+    font-size: 20px;
+  }
+
+  .icon {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+/* ===============================
+   768px (TABLET)
+=================================*/
+@media (max-width: 768px) {
+
+  .spot-recognition-adv {
+    padding: 50px 15px;
+  }
+
+  .spot-head h2 {
+    font-size: 49px;
+    line-height: 42px;
+    max-width: 320px;
+  }
+
+  .spot-head p {
+    font-size: 18px;
+    max-width: 420px;
+  }
+
+  .spot-sub {
+    padding: 5px 14px;
+    font-size: 12px;
+    width: auto;
+  }
+
+  .award {
+    min-width: 500px;
+    padding: 10px 20px;
+    border-radius: 40px;
+  }
+
+  .award h4 {
+    font-size: 22px;
+  }
+
+  .award span {
+    font-size: 13px;
+  }
+
+  .icon {
+    width: 55px;
+    height: 55px;
+  }
+
+  /* fade reduce */
+  .marquee-row::before,
+  .marquee-row::after {
+    width: 60px;
+  }
+}
+
+/* ===============================
+   425px (MOBILE)
+=================================*/
+@media (max-width: 425px) {
+
+  .spot-recognition-adv {
+    padding: 40px 12px;
+  }
+
+  .spot-head h2 {
+    font-size: 35px;
+    line-height: 34px;
+  }
+
+  .spot-sub {
+    padding: 4px 12px;
+    font-size: 12px;
+  }
+
+  .award {
+    min-width:400px;
+    padding: 4px 16px;
+    gap: 10px;
+  }
+
+  .award h4 {
+    font-size: 18px;
+  }
+
+  .award span {
+    font-size: 12px;
+  }
+
+  .icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .icon img {
+    width: 24px;
+  }
+
+  /* remove heavy fade on mobile */
+  .marquee-row::before,
+  .marquee-row::after {
+    width: 30px;
+    opacity: 0.8;
+  }
+}</style>

@@ -1,0 +1,377 @@
+<section class="wmus-section">
+  <div class="wmus-container">
+
+    <!-- LEFT IMAGE -->
+    <div class="wmus-left">
+      <div class="wmus-image-wrapper">
+        <img src="{{ section.settings.image | img_url: 'master' }}" alt="">
+
+        <!-- RATING CARD -->
+        <div class="wmus-rating">
+          <h3>{{ section.settings.rating }}</h3>
+
+          <div class="wmus-avatars">
+            {% if section.settings.avatar1 != blank %}
+              <img src="{{ section.settings.avatar1 | img_url: '100x100' }}">
+            {% endif %}
+            {% if section.settings.avatar2 != blank %}
+              <img src="{{ section.settings.avatar2 | img_url: '100x100' }}">
+            {% endif %}
+            {% if section.settings.avatar3 != blank %}
+              <img src="{{ section.settings.avatar3 | img_url: '100x100' }}">
+            {% endif %}
+          </div>
+
+          <div class="wmus-stars">
+            ★★★★★
+          </div>
+
+          <p>{{ section.settings.rating_text }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="wmus-right">
+
+      <!-- TAG -->
+    <div class="wmus-marquee">
+  <div class="wmus-marquee-track">
+
+    {% for i in (1..12) %}
+      <span>{{ section.settings.tag }}</span>
+      <span class="wmus-dot">•</span>
+    {% endfor %}
+
+  </div>
+</div>
+
+      <!-- HEADING -->
+      <h2>{{ section.settings.heading }}</h2>
+
+      <!-- DESCRIPTION -->
+      <p class="wmus-desc">
+        {{ section.settings.description }}
+      </p>
+
+{% for block in section.blocks %}
+<div class="wmus-feature">
+
+  <!-- LEFT SIDE -->
+  <div class="wmus-feature-left">
+    <div class="wmus-icon">
+      <img src="{{ block.settings.icon | img_url: '100x100' }}">
+    </div>
+
+    <h4>{{ block.settings.title }}</h4>
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="wmus-right-text">
+    <p>{{ block.settings.text }}</p>
+  </div>
+
+</div>
+{% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.wmus-section {
+  padding: 80px 20px;
+  background: #f7f7f7;
+}
+
+.wmus-container {
+  max-width: 1300px;
+  margin: auto;
+  display: flex;
+  gap: 80px;
+  align-items: center;
+}
+
+/* LEFT */
+.wmus-left {
+  width: 45%;
+}
+
+.wmus-image-wrapper {
+  position: relative;
+}
+
+.wmus-image-wrapper img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+/* RATING CARD */
+.wmus-rating {
+  position: absolute;
+  bottom: -30px;
+  left: 30px;
+  background: #0000002e;
+  padding: 20px;
+  border-radius: 16px;
+  color: #fff;
+width: 260px;
+    padding: 36px 20px;
+  text-align: center;
+  backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    margin-top: auto;
+}
+
+.wmus-rating h3 {
+    font-size: 52px;
+    margin-bottom: 10px;
+    color: #e4ed64;
+}
+
+.wmus-avatars {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.wmus-avatars img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-left: -10px;
+}
+
+.wmus-stars {
+  color: orange;
+  margin-bottom: 5px;
+}
+
+/* RIGHT */
+.wmus-right {
+  width: 55%;
+}
+
+/* MARQUEE WRAPPER */
+.wmus-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  border: 1px solid #d4ff3f;
+  border-radius: 30px;
+  padding: 8px 0;
+  margin-bottom: 20px;
+  position: relative;
+  width:20%;
+}
+
+/* TRACK */
+.wmus-marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 25px;
+  animation: wmus-scroll 15s linear infinite;
+}
+
+/* TEXT */
+.wmus-marquee-track span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+}
+
+/* DOT */
+.wmus-dot {
+  color: #d4ff3f;
+  font-size: 18px;
+}
+
+/* ANIMATION */
+@keyframes wmus-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.wmus-right h2 {
+  font-size: 70px;
+  margin: 0;
+}
+
+.wmus-desc {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 18px;
+    padding-bottom: 10px;
+}
+
+.wmus-feature {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+  border-top: 1px solid #ddd;
+  gap:80px;
+}
+
+.wmus-feature:first-child {
+  border-top: none;
+}
+
+/* LEFT SIDE (ICON + TITLE) */
+.wmus-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 45%;
+}
+.wmus-rating p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+/* ICON */
+.wmus-icon {
+  padding:22px;
+  background: #e4ed64;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wmus-feature-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:30px;
+}
+.wmus-icon img {
+  width: 50px;
+}
+.wmus-feature-left h4 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 25px;
+}
+/* TITLE */
+.wmus-left h4 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* RIGHT DESCRIPTION */
+.wmus-right-text {
+  width: 50%;
+}
+
+.wmus-right-text p {
+  margin: 0;
+  color: #777;
+  font-size: 17px;
+  line-height: 1.7;
+  padding-left: 3px;
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px){
+  .wmus-container {
+    flex-direction: column;
+  }
+
+  .wmus-left, .wmus-right {
+    width: 100%;
+  }
+
+  .wmus-right h2 {
+    font-size: 56px;
+  }
+}
+@media(max-width: 430px){
+   .wmus-right h2 {
+    font-size: 42px;
+  }
+.wmus-feature {
+    display: grid;
+    padding: 15px 0;
+    gap: 10px;
+    text-align: center;
+}
+.wmus-right{
+    text-align: center;
+      align-items: center;
+}
+.wmus-right-text {
+    width: 100%;
+}
+.wmus-icon {
+   width:20%;
+}
+.wmus-icon img {
+    width: 35px;
+}
+.wmus-feature-left {
+  display:flex;
+      flex-direction: column;
+      justify-content: center;
+      gap:10px;
+}
+.wmus-marquee {
+    padding: 4px 0;
+    margin-bottom: 20px;
+    position: relative;
+    width: 31%;
+    margin: 10px auto;
+}
+.wmus-section {
+    padding: 60px 20px;
+}
+.wmus-container{
+  gap:70px;
+}
+}
+</style>
+
+{% schema %}
+{
+  "name": "What Makes Us",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Main Image" },
+
+    { "type": "text", "id": "rating", "label": "Rating", "default": "4.9" },
+    { "type": "text", "id": "rating_text", "label": "Rating Text", "default": "2k+ satisfied customers" },
+
+    { "type": "image_picker", "id": "avatar1", "label": "Avatar 1" },
+    { "type": "image_picker", "id": "avatar2", "label": "Avatar 2" },
+    { "type": "image_picker", "id": "avatar3", "label": "Avatar 3" },
+
+    { "type": "text", "id": "tag", "label": "Tag", "default": "OUR COMMITMENT" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What makes us different" },
+    { "type": "textarea", "id": "description", "label": "Description" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "What Makes Us",
+      "blocks": [
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" }
+      ]
+    }
+  ]
+}
+{% endschema %}

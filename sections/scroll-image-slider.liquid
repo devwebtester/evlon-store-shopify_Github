@@ -1,0 +1,351 @@
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Vend+Sans:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+
+{% schema %}
+{
+  "name": "Scroll Image Text",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Content Block",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Scroll Image Text" }]
+}
+{% endschema %}
+
+<section class="scroll-section">
+
+  <!-- DESKTOP -->
+  <div class="scroll-container">
+    
+    <!-- LEFT CONTENT -->
+    <div class="scroll-content">
+      {% for block in section.blocks %}
+        <div class="content-item">
+          <h2>{{ block.settings.heading }}</h2>
+          <p>{{ block.settings.text }}</p>
+
+          {% if block.settings.btn_text != blank %}
+            <a href="{{ block.settings.btn_link }}" class="custom-btn">
+              {{ block.settings.btn_text }}
+            </a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <div class="scroll-image">
+      {% for block in section.blocks %}
+        <img src="{{ block.settings.image | image_url: width: 1200 }}">
+      {% endfor %}
+    </div>
+
+  </div>
+  <!-- ✅ MOBILE -->
+  <div class="mobile-stack">
+    {% for block in section.blocks %}
+      <div class="mobile-item">
+
+        <div class="mobile-image">
+          <img src="{{ block.settings.image | image_url: width: 800 }}">
+        </div>
+
+        <div class="mobile-content">
+          <h2>{{ block.settings.heading }}</h2>
+          <p>{{ block.settings.text }}</p>
+
+          {% if block.settings.btn_text != blank %}
+            <a href="{{ block.settings.btn_link }}" class="custom-btn">
+              {{ block.settings.btn_text }}
+            </a>
+          {% endif %}
+        </div>
+
+      </div>
+    {% endfor %}
+  </div>
+
+</section>
+
+<style>
+    
+  .scroll-section {
+    background: #000;
+    color: #fff;
+  }
+
+  .scroll-container {
+    display: flex;
+    max-width: 1400px;
+    margin: auto;
+        gap: 7rem;
+      padding: 0 30px;
+  }
+
+  /* LEFT CONTENT */
+  .scroll-content {
+    width: 50%;
+    padding-right: 100px;
+  }
+
+  .content-item {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.5s;
+  }
+
+  .content-item.active {
+    opacity: 1;
+  }
+
+  .content-item h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+     font-family: "Libre Franklin", sans-serif;
+     line-height: 46px;
+  }
+
+  .content-item p {
+    font-size: 16px;
+    line-height: 1.6;
+     font-family: "Libre Franklin", sans-serif;
+  }
+
+  /* RIGHT IMAGE */
+  .scroll-image {
+    width: 50%;
+    position: sticky;
+    top: 140px;
+  height: calc(100vh - 200px);
+  }
+
+  .scroll-image img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+      object-position: center right;
+  
+  /* ✅ CHANGE: clip-path add kar, opacity hatav */
+  opacity: 1;
+  clip-path: inset(100% 0px 0px);
+  transition: clip-path 0.75s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: clip-path;
+  }
+
+  .scroll-image img.active {
+   clip-path: inset(0% 0px 0px);
+  }
+  
+.custom-btn {
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 16px;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 2px;
+  transition: 0.3s;
+      width: fit-content;
+}
+
+.custom-btn:hover {
+  opacity: 0.7;
+}
+@media (max-width: 1440px){
+    .scroll-image {
+    width: 50%;
+    position: sticky;
+    top: 240px;
+    height: calc(100vh - 400px);
+    }
+}
+  /* MOBILE */
+  @media (max-width: 768px){
+
+  .scroll-container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  /* LEFT CONTENT */
+  .scroll-content {
+    width: 48%;
+    padding:0;
+  }
+
+  .content-item {
+    height: 70vh; 
+  }
+
+  /* RIGHT IMAGE */
+  .scroll-image {
+    width: 52%;
+    position: sticky;
+    top: 204px !important;
+    height: calc(60vh - 100px) !important;
+  }
+
+  .scroll-image img {
+    object-fit: cover;
+  }
+
+}
+
+@media (max-width: 1024px){
+
+  .scroll-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  /* LEFT CONTENT */
+  .scroll-content {
+    width: 45%;
+   padding-right: 37px;
+  }
+
+  .content-item {
+     height: 70vh;
+     {% comment %} display: flex;
+  flex-direction: column;
+  justify-content: center;  /* 🔥 slightly smaller */ {% endcomment %}
+  }
+
+  /* RIGHT IMAGE */
+  .scroll-image {
+    width: 52%;
+    position: sticky;
+    top: 204px !important;
+    height: calc(70vh - 100px);
+  }
+
+  .scroll-image img {
+    object-fit: contain;
+  }
+.content-item h2 {
+    font-size: 28px;
+    margin-bottom: 9px;
+}
+ 
+{% comment %} .content-item:last-child {
+  min-height: 100vh; /* 🔥 full height for last */
+} {% endcomment %}
+}
+/* HIDE MOBILE BY DEFAULT */
+.mobile-stack {
+  display: none;
+}
+
+@media (max-width: 430px){
+
+  .scroll-container {
+    display: none;
+  }
+
+  .mobile-stack {
+    display: block;
+  }
+
+  .mobile-item {
+    margin-bottom: 30px;
+  }
+
+  .mobile-image img {
+    width: 100%;
+    display: block;
+  }
+
+  .mobile-content {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .mobile-content h2 {
+    font-size: 24px;
+  }
+
+  .mobile-content p {
+    font-size: 14px;
+        line-height: 20px;
+  }
+
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  const contents = document.querySelectorAll('.content-item');
+  const images   = document.querySelectorAll('.scroll-image img');
+  let currentIndex = 0;
+
+  // ✅ First image & text visible by default
+  if (images[0])   images[0].style.clipPath = 'inset(0% 0px 0px)';
+  if (contents[0]) contents[0].classList.add('active');
+
+  function switchTo(index) {
+    if (index === currentIndex) return;
+
+    const goingDown = index > currentIndex;
+    const prevImg   = images[currentIndex];
+    const nextImg   = images[index];
+
+    // ✅ Prev image wipe out
+    prevImg.style.transition = 'clip-path 0.75s cubic-bezier(0.76, 0, 0.24, 1)';
+    prevImg.style.clipPath   = goingDown ? 'inset(0 0 100% 0)' : 'inset(100% 0px 0px)';
+
+    // ✅ Next image: set start edge instantly, then animate in
+    nextImg.style.transition = 'none';
+    nextImg.style.clipPath   = goingDown ? 'inset(100% 0px 0px)' : 'inset(0 0 100% 0)';
+    nextImg.getBoundingClientRect(); // force reflow
+    nextImg.style.transition = 'clip-path 0.75s cubic-bezier(0.76, 0, 0.24, 1)';
+    nextImg.style.clipPath   = 'inset(0% 0px 0px)';
+
+    // ✅ Text fade
+    contents.forEach(el => el.classList.remove('active'));
+    contents[index].classList.add('active');
+
+    currentIndex = index;
+  }
+
+  function onScroll() {
+    if (window.innerWidth <= 425) return;
+
+    let index = 0;
+    contents.forEach((item, i) => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top <= window.innerHeight / 2) index = i;
+    });
+
+    switchTo(index);
+  }
+
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+
+});
+</script>
+

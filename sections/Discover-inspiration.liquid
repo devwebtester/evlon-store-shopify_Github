@@ -1,0 +1,361 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+{% schema %}
+{
+  "name": "Blog Premium",
+  "settings": [
+    { "type": "blog", "id": "blog", "label": "Select Blog" },
+    { "type": "text", "id": "mini_text", "label": "Mini Text", "default": "WHO WE ARE" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Discover inspiration and trends" },
+    { "type": "text", "id": "btn_text", "label": "Button Text", "default": "View Services" }
+  ],
+  "presets": [
+    { "name": "Blog Premium" }
+  ]
+}
+{% endschema %}
+
+<section class="nx-blog-sec">
+  <div class="nx-container">
+
+    <!-- TOP -->
+    <div class="nx-top-wrap">
+
+      <!-- LEFT -->
+      <div class="nx-top-left">
+
+        <!-- MARQUEE SUBTITLE -->
+        <div class="nx-marquee">
+          <div class="nx-track">
+            {% for i in (1..10) %}
+              <span>{{ section.settings.mini_text }}</span>
+              <span class="nx-dot">•</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- TITLE -->
+        <h2>{{ section.settings.heading }}</h2>
+
+      </div>
+
+      <!-- RIGHT BUTTON -->
+      <div class="nx-top-right">
+        <a href="/blogs/{{ section.settings.blog }}" class="nx-btn">
+          <span class="nx-btn-text">{{ section.settings.btn_text }}</span>
+
+          <span class="nx-icon-wrap">
+            <span class="nx-icon">➚</span>
+            <span class="nx-icon-hover">➚</span>
+          </span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- SLIDER -->
+    <div class="swiper nxSwiper">
+      <div class="swiper-wrapper">
+
+        {% for article in blogs[section.settings.blog].articles limit:8 %}
+        <div class="swiper-slide">
+          <div class="nx-card">
+
+            <!-- IMAGE -->
+            <div class="nx-img">
+              <img src="{{ article.image | image_url: width: 900 }}" alt="{{ article.title }}">
+            </div>
+
+            <!-- META -->
+            <div class="nx-meta">
+              <span class="nx-tag">{{ article.tags.first }}</span>
+
+              <div class="nx-date-wrap">
+                <span class="nx-line"></span>
+                <span class="nx-date">{{ article.published_at | date: "%b %d, %Y" }}</span>
+              </div>
+            </div>
+
+            <!-- TITLE -->
+            <h3>{{ article.title }}</h3>
+
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+
+/* SECTION */
+.nx-blog-sec{
+  padding:80px 20px;
+  background:#f5f5f5;
+}
+
+.nx-container{
+  max-width:1300px;
+  margin:auto;
+}
+
+/* TOP */
+.nx-top-wrap{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:40px;
+  flex-wrap:wrap;
+  gap:20px;
+}
+
+.nx-top-left{
+  max-width:700px;
+}
+
+/* MARQUEE */
+.nx-marquee{
+     overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 10px;
+    width: 121px;
+    overflow: hidden;
+    border: 1px solid #d4ff3f;
+    border-radius: 30px;
+    padding: 4px 15px;
+    margin: 0 0 30px 0;
+
+}
+
+.nx-track{
+  display:inline-block;
+  animation:nxScroll 20s linear infinite;
+}
+
+.nx-track span{
+  font-size:12px;
+  margin-right:10px;
+      color:rgb(22, 22, 22);
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.nx-dot{
+  margin:0 8px;
+}
+
+@keyframes nxScroll{
+  0%{ transform:translateX(0); }
+  100%{ transform:translateX(-50%); }
+}
+
+/* TITLE */
+.nx-top-left h2{
+  font-size:60px;
+  margin:0;
+}
+
+/* BUTTON (SAME STYLE) */
+.nx-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  padding:6px 6px 6px 23px;
+  border-radius:40px;
+  border:1px solid #ddd;
+  text-decoration:none;
+  color:#000;
+  overflow:hidden;
+  position:relative;
+}
+
+.nx-btn-text{
+  font-size:14px;
+  font-weight:600;
+}
+
+/* ICON */
+.nx-icon-wrap{
+ position: relative;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    background: #e4ed64;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    text-align: center;
+}
+
+.nx-icon,
+.nx-icon-hover{
+  position:absolute;
+  transition:0.4s;
+}
+
+
+.nx-icon-hover{
+  top:100%;
+}
+
+/* HOVER EFFECT */
+.nx-btn:hover .nx-icon{
+  top:-100%;
+}
+
+.nx-btn:hover .nx-icon-hover{
+  top:28%;
+}
+
+/* CARD */
+.nx-card{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* IMAGE */
+.nx-img {
+  position: relative;
+  overflow: hidden;
+
+  padding-top: 68.5%; /* tamaro reference ratio 👍 */
+  margin-bottom: 20px;
+}
+
+.nx-img img {
+  position: absolute;
+  top: 0;
+  left: 0;
+border-radius: 30px;
+  width: 120%; /* thodu zoom for movement space */
+  height: 100%;
+  object-fit: cover;
+overflow:hidden;
+}
+
+/* META */
+.nx-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.nx-tag{
+  background:#d4ff3f;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:600;
+}
+
+.nx-date-wrap{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.nx-line{
+  width:60px;
+  height:1px;
+  background:#ccc;
+}
+
+.nx-date{
+  font-size:12px;
+  color:#777;
+}
+
+/* TITLE */
+.nx-card h3{
+  font-size: 26px;
+    color: #000;
+    font-weight: 600;
+    line-height: 1.3;
+    margin:0;
+}
+
+/* SWIPER */
+.nxSwiper{
+  padding-bottom:10px;
+}
+
+.swiper-slide{
+  height:auto;
+}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .nx-top-left h2{
+    font-size:36px;
+  }
+  .nx-top-wrap{
+    flex-wrap:nowrap;
+  }
+  .nx-btn{
+  gap: 5px;
+}
+}
+
+@media(max-width:767px){
+
+  .nx-top-left h2{
+    font-size:56px;
+  }
+  .nx-blog-sec {
+    padding: 60px 20px 20px;
+    background: #f5f5f5;
+}
+.nx-top-wrap{
+  flex-direction: column;
+  align-items: flex-start;
+}
+.nx-top-left {
+    max-width: 400px;
+}
+
+}
+@media(max-width:425px){
+   .nx-top-left h2{
+    font-size:42px;
+  }
+  .nx-top-wrap{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap:20px;
+  }
+  .nx-marquee{
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    margin: auto;
+  }
+  .nx-blog-sec {
+        padding: 20px 15px 0px;
+  }
+}
+
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+new Swiper(".nxSwiper", {
+  slidesPerView: 3,
+  spaceBetween: 20,
+  loop: true,
+
+  breakpoints: {
+    0: { slidesPerView: 1.2 },
+    768: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 }
+  }
+});
+</script>

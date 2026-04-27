@@ -1,0 +1,314 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 40,
+        "padding-block-end": 0
+      }
+    },
+    "about_hero_4WfWMi": {
+      "type": "about-hero",
+      "name": "About Hero",
+      "settings": {
+        "bg_image": "shopify://shop_images/about-bc.jpg",
+        "title": "About us",
+        "breadcrumb": "Home • About us",
+        "right_text": "Whether you're building, remodeling, buying, or selling, we bring seamless project execution under one roof."
+      }
+    },
+    "stylish_about_QcYHB6": {
+      "type": "stylish-about",
+      "name": "About Style Section",
+      "settings": {
+        "badge": "ABOUT US",
+        "heading": "Shaping the world of things to come",
+        "desc": "We’d love to share more with you, please complete this form and our dedicated team will get back to you shortly.",
+        "subdesc": "In markets from renewable energy, sports and entertainment, to data centers and healthcare, we work to ensure the built environment leaves a lasting positive impact. Together, we strive to make your project better than you imagined possible.",
+        "btn_text": "Meet The Team",
+        "btn_link": "shopify://collections/about",
+        "image": "shopify://shop_images/h2_img1.jpg",
+        "s1_num": "40",
+        "s1_text": "projects in development",
+        "s1_icon": "shopify://shop_images/task-management.png",
+        "s2_num": "18m",
+        "s2_text": "square feet of property",
+        "s2_icon": "shopify://shop_images/residential.png",
+        "s3_num": "2.5b",
+        "s3_text": "total projects cost",
+        "s3_icon": "shopify://shop_images/financial-planning.png"
+      }
+    },
+    "timeline_horizontal_YqaAft": {
+      "type": "timeline-horizontal",
+      "blocks": {
+        "timeline_item_yMtddh": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "1983",
+            "text": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusm doloremque laudtium, totam rem aperiam, eaque ipsa.",
+            "image": "shopify://shop_images/journey_2024.png"
+          }
+        },
+        "timeline_item_fKQVVP": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "1996",
+            "text": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusm doloremque laudtium, totam rem aperiam, eaque ipsa.",
+            "image": "shopify://shop_images/journey_1996.png"
+          }
+        },
+        "timeline_item_PBpy3H": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2005",
+            "text": "Natus error sit voluptatem accusantium doloremque laudtium.",
+            "image": "shopify://shop_images/journey_2005.png"
+          }
+        },
+        "timeline_item_RrPnKX": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2013",
+            "text": "Quae ab illoentore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+            "image": "shopify://shop_images/journey_2024.png"
+          }
+        },
+        "timeline_item_ap3Ckp": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2024",
+            "text": "Soloremque laudtium, totam rem aperiam, eaque ipsa quae ab illoentore veritatis.",
+            "image": "shopify://shop_images/journey_2024.png"
+          }
+        }
+      },
+      "block_order": [
+        "timeline_item_yMtddh",
+        "timeline_item_fKQVVP",
+        "timeline_item_PBpy3H",
+        "timeline_item_RrPnKX",
+        "timeline_item_ap3Ckp"
+      ],
+      "name": "Timeline Journey",
+      "settings": {
+        "badge_text": "our story",
+        "heading": "40+ years of a remarkable journey",
+        "cta_text": "Get your free quote",
+        "button_link": "#",
+        "bg_vector": "shopify://shop_images/h4-vector.png"
+      }
+    },
+    "learn_about_us_Ui6j7T": {
+      "type": "learn-about-us",
+      "blocks": {
+        "card_KmFqh4": {
+          "type": "card",
+          "settings": {
+            "number": "01.",
+            "title": "What we do",
+            "desc": "We maintain this by ensuring transparency and professional conduct in every aspect.",
+            "btn": "Our Solutions",
+            "link": "#",
+            "pos": "bottom",
+            "style": "normal",
+            "bg": "#000000",
+            "color": "#ffffff"
+          }
+        },
+        "card_iyMkhc": {
+          "type": "card",
+          "settings": {
+            "number": "02.",
+            "title": "Our impact",
+            "desc": "We work with both investors and developers to create landmarks that make an impact.",
+            "btn": "See Projects",
+            "link": "#",
+            "image": "shopify://shop_images/h1_service-1.png",
+            "pos": "top",
+            "style": "normal",
+            "bg": "#e4ed64",
+            "color": "#ffffff"
+          }
+        },
+        "card_MBq34d": {
+          "type": "card",
+          "settings": {
+            "number": "03.",
+            "title": "Core values",
+            "desc": "To empower businesses with cutting-edge web solutions that enhance their digital presence and drive growth.",
+            "btn": "Discover more",
+            "link": "",
+            "image": "shopify://shop_images/h3_img-2.jpg",
+            "pos": "bottom",
+            "style": "normal",
+            "bg": "#0e1a0e",
+            "color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "card_KmFqh4",
+        "card_iyMkhc",
+        "card_MBq34d"
+      ],
+      "name": "Learn About Section",
+      "settings": {
+        "badge": "COMPANY • COMPANY • COMPANY",
+        "heading": "Learn more about us"
+      }
+    },
+    "testimonial_slider_Qzxi8t": {
+      "type": "testimonial-slider",
+      "blocks": {
+        "testimonial_NWQxif": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Your team were great to work with on our basement remodel! I will definitely be working with them for future projects!",
+            "name": "Floyd Miles",
+            "designation": "Bond Projects Coordinator"
+          }
+        },
+        "testimonial_mqHgCa": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "A wonderful experience! They knew what they were doing and were incredibly knowledgeable throughout the process.",
+            "name": "Floyd Miles",
+            "designation": "Bond Projects Coordinator"
+          }
+        },
+        "testimonial_XVJVrb": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "They knew what they were doing and were incredibly knowledgeable throughout the process. A wonderful!",
+            "name": "Floyd Miles",
+            "designation": "Bond Projects Coordinator"
+          }
+        },
+        "testimonial_8k4i7j": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I asked to have the area rebuilt and they were very prompt! Mud and texture came out great! Would highly recommend!",
+            "name": "Floyd Miles",
+            "designation": "Bond Projects Coordinator"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_NWQxif",
+        "testimonial_mqHgCa",
+        "testimonial_XVJVrb",
+        "testimonial_8k4i7j"
+      ],
+      "name": "Testimonial Advanced",
+      "settings": {
+        "center_image": "shopify://shop_images/h1_img-4.jpg",
+        "circle_text": "what people says · what people says ·  what people says ·  what people says ·"
+      }
+    },
+    "clients_ymz84x": {
+      "type": "clients",
+      "blocks": {
+        "logo_3mdjM6": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/svgviewer-png-output_10.png"
+          }
+        },
+        "logo_WXpU8K": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/svgviewer-png-output_12.png"
+          }
+        },
+        "logo_k8eGPM": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/svgviewer-png-output_8.png"
+          }
+        },
+        "logo_XXh7xh": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/svgviewer-png-output_7.png"
+          }
+        },
+        "logo_h3kidh": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/svgviewer-png-output_9.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_3mdjM6",
+        "logo_WXpU8K",
+        "logo_k8eGPM",
+        "logo_XXh7xh",
+        "logo_h3kidh"
+      ],
+      "name": "Client Logo Marquee",
+      "settings": {
+        "heading": "WE'RE PROUD TO PARTNER WITH BEST-IN-CLASS CLIENTS"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "about_hero_4WfWMi",
+    "stylish_about_QcYHB6",
+    "timeline_horizontal_YqaAft",
+    "learn_about_us_Ui6j7T",
+    "testimonial_slider_Qzxi8t",
+    "clients_ymz84x"
+  ]
+}

@@ -1,0 +1,767 @@
+{% doc %}
+  @prompt
+    Create a Shopify section (Liquid + CSS + JavaScript in one file) with the following requirements:
+    
+    SECTION NAME: "Spot Services Interactive"
+    
+    LAYOUT:
+    - Two column layout
+    - Left side (40%) → heading + service list
+    - Right side (60%) → dynamic image + description
+    
+    LEFT SIDE:
+    - Large heading: "Global leader in construction & real estate"
+    - Below heading create a vertical list of services (accordion style but NO dropdown content)
+    - Each item should have:
+      - Number (01, 02, 03…)
+      - Title text
+      - Circular arrow button on right side
+    
+    INTERACTION:
+    - On hover OR click on any item:
+      - That item becomes active
+      - Arrow rotates or moves
+      - Right side content updates (image + text)
+    - Only one active item at a time
+    - First item active by default
+    
+    RIGHT SIDE:
+    - Dark background card
+    - Top small description text
+    - Below that a rounded image
+    - Content changes dynamically based on active item
+    
+    ANIMATION:
+    - Smooth fade transition for image + text
+    - Active item highlight with color change
+    - Arrow icon rotate or translate animation
+    
+    SHOPIFY REQUIREMENTS:
+    - Use section schema
+    - Each accordion item should be a block with:
+      - title
+      - description
+      - image
+    - Max 5 blocks
+    - Fully customizable from Shopify editor
+    
+    STYLING:
+    - Modern clean design
+    - Large bold heading
+    - Thin divider lines between items
+    - Rounded image corners
+    - Soft hover effects
+    
+    RESPONSIVE:
+    - On mobile:
+      - Stack layout
+      - Accordion on top, image below
+      - Same interaction works
+    
+    OUTPUT:
+    - Provide full single Shopify section code
+    - Include Liquid, CSS, and JavaScript in one file
+    - No external libraries
+    
+    IMPORTANT:
+    - This is NOT a traditional accordion
+    - Do NOT show dropdown content
+    - Only titles act as tabs to change right side content, Use data-index mapping between left items and right content. Use JS to switch active state.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-spot-services-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: {{ block.settings.section_padding }}px 0;
+  }
+
+  .ai-spot-services-container-{{ ai_gen_id }} {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-spot-services-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    {% comment %} gap: 60px; {% endcomment %}
+    align-items: start;
+  }
+
+  .ai-spot-services-left-{{ ai_gen_id }} {
+    position: sticky;
+    top: 100px;
+    width:75%;
+  }
+
+  .ai-spot-services-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 40px 0;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-spot-services-list-{{ ai_gen_id }} {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ai-spot-services-item-{{ ai_gen_id }} {
+    border-bottom: 1px solid {{ block.settings.divider_color }};
+    padding: 20px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .ai-spot-services-item-{{ ai_gen_id }}:first-child {
+    border-top: 1px solid {{ block.settings.divider_color }};
+  }
+
+  .ai-spot-services-item-inner-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .ai-spot-services-item-content-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+  }
+
+  .ai-spot-services-number-{{ ai_gen_id }} {
+    font-size: 18px;
+    font-weight: 600;
+    color: {{ block.settings.number_color }};
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-spot-services-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.item_title_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.item_title_color }};
+    margin: 0;
+    transition: color 0.3s ease;
+  }
+
+  .ai-spot-services-arrow-{{ ai_gen_id }} {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: {{ block.settings.arrow_bg_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .ai-spot-services-arrow-{{ ai_gen_id }} svg {
+    width: 20px;
+    height: 20px;
+    stroke: {{ block.settings.arrow_icon_color }};
+    transition: transform 0.3s ease;
+  }
+
+  .ai-spot-services-item-{{ ai_gen_id }}.active .ai-spot-services-number-{{ ai_gen_id }} {
+    opacity: 1;
+  }
+
+  .ai-spot-services-item-{{ ai_gen_id }}.active .ai-spot-services-title-{{ ai_gen_id }} {
+    color: {{ block.settings.active_title_color }};
+  }
+
+  .ai-spot-services-item-{{ ai_gen_id }}.active .ai-spot-services-arrow-{{ ai_gen_id }} {
+    background-color: {{ block.settings.active_arrow_bg_color }};
+    transform: translateX(8px);
+  }
+.ai-spot-services-item-{{ ai_gen_id }}.active .ai-spot-services-item {
+     border-bottom: 1px solid #000000;
+  }
+  .ai-spot-services-item-{{ ai_gen_id }}.active .ai-spot-services-arrow-{{ ai_gen_id }} svg {
+    stroke: {{ block.settings.active_arrow_icon_color }};
+    transform: rotate(-45deg);
+  }
+
+  .ai-spot-services-item-{{ ai_gen_id }}:hover .ai-spot-services-arrow-{{ ai_gen_id }} {
+    background-color: {{ block.settings.hover_arrow_bg_color }};
+  }
+
+  .ai-spot-services-right-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_bg_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: 40px;
+    min-height: 800px;
+    position: relative;
+  }
+
+  .ai-spot-services-content-item-{{ ai_gen_id }} {
+    position: absolute;
+    top: 150px;
+    left: 40px;
+    right: 40px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    pointer-events: none;
+  }
+
+  .ai-spot-services-content-item-{{ ai_gen_id }}.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .ai-spot-services-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.description_color }};
+    margin: 0 0 15px 0;
+  }
+
+  .ai-spot-services-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    overflow: hidden;
+  }
+
+  .ai-spot-services-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-spot-services-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-color: #f4f4f4;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-spot-services-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 200px;
+    max-height: 200px;
+    opacity: 0.3;
+  }
+    @media screen and (max-width: 1024px) {
+.ai-spot-services-left-avvc1y0hcrlplytdlyaigenblock964dfc7hb6uet {
+    position: sticky;
+    top: 100px;
+    width: 95%;
+}
+.ai-spot-services-heading-avvc1y0hcrlplytdlyaigenblock964dfc7hb6uet {
+    font-size: 56px;
+}
+.ai-spot-services-right-avvc1y0hcrlplytdlyaigenblock964dfc7hb6uet{
+  min-height:700px;
+}
+}
+  @media screen and (max-width: 989px) {
+    .ai-spot-services-grid-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .ai-spot-services-left-{{ ai_gen_id }} {
+      position: static;
+    }
+
+    .ai-spot-services-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.7 }}px;
+      margin-bottom: 30px;
+    }
+
+    .ai-spot-services-right-{{ ai_gen_id }} {
+      padding: 30px;
+      min-height: 400px;
+    }
+
+    .ai-spot-services-content-item-{{ ai_gen_id }} {
+      top: 30px;
+      left: 30px;
+      right: 30px;
+    }
+
+    .ai-spot-services-item-{{ ai_gen_id }} {
+      padding: 20px 0;
+    }
+
+    .ai-spot-services-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.item_title_size | times: 0.9 }}px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-spot-services-container-avvc1y0hcrlplytdlyaigenblock964dfc7hb6uet{
+      padding:0;
+    }
+    .ai-spot-services-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.5 }}px;
+    }
+
+    .ai-spot-services-right-{{ ai_gen_id }} {
+      padding: 20px;
+    }
+
+    .ai-spot-services-content-item-{{ ai_gen_id }} {
+      top: 20px;
+      left: 20px;
+      right: 20px;
+    }
+
+    .ai-spot-services-arrow-{{ ai_gen_id }} {
+      width: 36px;
+      height: 36px;
+    }
+
+    .ai-spot-services-arrow-{{ ai_gen_id }} svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+    @media screen and (max-width: 425px) {
+  .ai-spot-services-description-avvc1y0hcrlplytdlyaigenblock964dfc7hb6uet {
+    font-size: 20px;
+  }
+}
+{% endstyle %}
+
+<spot-services-{{ ai_gen_id }} class="ai-spot-services-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-spot-services-container-{{ ai_gen_id }}">
+    <div class="ai-spot-services-grid-{{ ai_gen_id }}">
+      <div class="ai-spot-services-left-{{ ai_gen_id }}">
+        {% if block.settings.heading != blank %}
+          <h2 class="ai-spot-services-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+        {% endif %}
+
+        <ul class="ai-spot-services-list-{{ ai_gen_id }}">
+          {% for i in (1..5) %}
+            {% assign title_key = 'service_' | append: i | append: '_title' %}
+            {% assign title = block.settings[title_key] %}
+
+            {% if title != blank %}
+              {% assign number = i %}
+              {% if number < 10 %}
+                {% assign number_display = '0' | append: number %}
+              {% else %}
+                {% assign number_display = number %}
+              {% endif %}
+
+              <li
+                class="ai-spot-services-item-{{ ai_gen_id }} {% if i == 1 %}active{% endif %}"
+                data-index="{{ i }}"
+              >
+                <div class="ai-spot-services-item-inner-{{ ai_gen_id }}">
+                  <div class="ai-spot-services-item-content-{{ ai_gen_id }}">
+                    <span class="ai-spot-services-number-{{ ai_gen_id }}">{{ number_display }}</span>
+                    <h3 class="ai-spot-services-title-{{ ai_gen_id }}">{{ title }}</h3>
+                  </div>
+                  <div class="ai-spot-services-arrow-{{ ai_gen_id }}">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                </div>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="ai-spot-services-right-{{ ai_gen_id }}">
+        {% for i in (1..5) %}
+          {% assign title_key = 'service_' | append: i | append: '_title' %}
+          {% assign description_key = 'service_' | append: i | append: '_description' %}
+          {% assign image_key = 'service_' | append: i | append: '_image' %}
+
+          {% assign title = block.settings[title_key] %}
+          {% assign description = block.settings[description_key] %}
+          {% assign image = block.settings[image_key] %}
+
+          {% if title != blank %}
+            <div
+              class="ai-spot-services-content-item-{{ ai_gen_id }} {% if i == 1 %}active{% endif %}"
+              data-index="{{ i }}"
+            >
+              {% if description != blank %}
+                <div class="ai-spot-services-description-{{ ai_gen_id }}">
+                  {{ description }}
+                </div>
+              {% endif %}
+
+              <div class="ai-spot-services-image-wrapper-{{ ai_gen_id }}">
+                {% if image %}
+                  <img
+                    src="{{ image | image_url: width: 1000 }}"
+                    alt="{{ image.alt | escape }}"
+                    loading="lazy"
+                    width="{{ image.width }}"
+                    height="{{ image.height }}"
+                    class="ai-spot-services-image-{{ ai_gen_id }}"
+                  >
+                {% else %}
+                  <div class="ai-spot-services-image-placeholder-{{ ai_gen_id }}">
+                    {{ 'image' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</spot-services-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class SpotServices{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.items = [];
+        this.contentItems = [];
+        this.currentIndex = null;
+      }
+
+      connectedCallback() {
+        this.items = this.querySelectorAll('.ai-spot-services-item-{{ ai_gen_id }}');
+        this.contentItems = this.querySelectorAll('.ai-spot-services-content-item-{{ ai_gen_id }}');
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.items.forEach((item) => {
+          item.addEventListener('click', (e) => {
+            const index = item.getAttribute('data-index');
+            this.switchActive(index);
+          });
+
+          item.addEventListener('mouseenter', (e) => {
+            const index = item.getAttribute('data-index');
+            this.switchActive(index);
+          });
+        });
+      }
+
+      switchActive(index) {
+        if (this.currentIndex === index) return;
+
+        this.items.forEach((item) => {
+          if (item.getAttribute('data-index') === index) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+
+        this.contentItems.forEach((content) => {
+          if (content.getAttribute('data-index') === index) {
+            content.classList.add('active');
+          } else {
+            content.classList.remove('active');
+          }
+        });
+
+        this.currentIndex = index;
+      }
+    }
+
+    customElements.define('spot-services-{{ ai_gen_id }}', SpotServices{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Spot services interactive",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Global leader in construction & real estate"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Service items"
+    },
+    {
+      "type": "range",
+      "id": "item_title_size",
+      "label": "Title size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "item_title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "active_title_color",
+      "label": "Active title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "number_color",
+      "label": "Number color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "header",
+      "content": "Arrow button"
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg_color",
+      "label": "Background color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "arrow_icon_color",
+      "label": "Icon color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "hover_arrow_bg_color",
+      "label": "Hover background color",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "color",
+      "id": "active_arrow_bg_color",
+      "label": "Active background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "active_arrow_icon_color",
+      "label": "Active icon color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Content card"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Background color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Service 1"
+    },
+    {
+      "type": "text",
+      "id": "service_1_title",
+      "label": "Title",
+      "default": "Construction services"
+    },
+    {
+      "type": "richtext",
+      "id": "service_1_description",
+      "label": "Description",
+      "default": "<p>Professional construction and development services for residential and commercial projects.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "service_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Service 2"
+    },
+    {
+      "type": "text",
+      "id": "service_2_title",
+      "label": "Title",
+      "default": "Real estate development"
+    },
+    {
+      "type": "richtext",
+      "id": "service_2_description",
+      "label": "Description",
+      "default": "<p>Comprehensive real estate development solutions from planning to execution.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "service_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Service 3"
+    },
+    {
+      "type": "text",
+      "id": "service_3_title",
+      "label": "Title",
+      "default": "Project management"
+    },
+    {
+      "type": "richtext",
+      "id": "service_3_description",
+      "label": "Description",
+      "default": "<p>Expert project management ensuring timely delivery and quality standards.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "service_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Service 4"
+    },
+    {
+      "type": "text",
+      "id": "service_4_title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "service_4_description",
+      "label": "Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "service_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Service 5"
+    },
+    {
+      "type": "text",
+      "id": "service_5_title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "service_5_description",
+      "label": "Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "service_5_image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Spot services interactive"
+    }
+  ]
+}
+{% endschema %}

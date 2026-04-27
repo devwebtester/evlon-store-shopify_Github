@@ -1,0 +1,373 @@
+{% schema %}
+{
+  "name": "Spot Hero Video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Find your spot in the haven you deserve"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "We developed landmark real estate projects that deliver lasting value to investors and communities."
+    },
+    {
+      "type": "text",
+      "id": "number",
+      "label": "Number",
+      "default": "285"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "completed projects"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Discover More"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video URL (MP4 / YouTube / Vimeo)"
+    },
+    {
+      "type": "color",
+      "id": "bg_bottom",
+      "label": "Bottom Gradient Color",
+      "default": "#eae7df"
+    },
+    {
+  "type": "image_picker",
+  "id": "left_bg_image",
+  "label": "Left Background Image (Light / Outline)"
+}
+  ],
+  "presets": [
+    {
+      "name": "Spot Hero Video"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="spot-hero-video">
+   {% if section.settings.left_bg_image != blank %}
+    <div class="spot-hero-left-bg">
+      <img src="{{ section.settings.left_bg_image | image_url: width: 600 }}">
+    </div>
+  {% endif %}
+  <div class="spot-hero-video-container">
+
+    <!-- LEFT 35% -->
+  <div class="spot-hero-video-left">
+
+ 
+
+<h1 class="spot-hero-title">
+  <span class="spot-hero-title-base">{{ section.settings.heading }}</span>
+  <span class="spot-hero-title-mask">{{ section.settings.heading }}</span>
+</h1>
+      <div class="spot-hero-video-project">
+        <div class="circle"></div>
+        <span class="num">{{ section.settings.number }}</span>
+        <span class="txt">{{ section.settings.label }}</span>
+      </div>
+
+      <p>{{ section.settings.description }}</p>
+<a href="#" class="spot-btn">
+  <span class="spot-btn-text">Discover More</span>
+
+  <span class="spot-btn-icon-wrap">
+    <span class="spot-btn-icon">➚</span>
+    <span class="spot-btn-icon-hover">➚</span>
+  </span>
+</a>
+
+    </div>
+
+    <!-- RIGHT 65% VIDEO ONLY -->
+    <div class="spot-hero-video-right">
+
+      {% if section.settings.video_url != blank %}
+
+        {% assign video = section.settings.video_url %}
+
+        {% if video contains "youtube.com" or video contains "youtu.be" %}
+         <div class="spot-hero-video-frame">
+    <iframe 
+      src="https://www.youtube.com/embed/{{ video | split: 'v=' | last | split: '&' | first }}?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&loop=1&playlist={{ video | split: 'v=' | last | split: '&' | first }}"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+        {% elsif video contains "vimeo.com" %}
+          <iframe 
+            src="https://player.vimeo.com/video/{{ video | split: '/' | last }}?autoplay=1&muted=1&loop=1"
+            allow="autoplay; fullscreen"
+            allowfullscreen>
+          </iframe>
+
+        {% else %}
+          <video autoplay muted loop playsinline>
+            <source src="{{ section.settings.video_url }}" type="video/mp4">
+          </video>
+        {% endif %}
+
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+.spot-hero-video {
+  padding: 0px 20px 80px;
+  background: linear-gradient(to bottom, #ffffff 43%, {{ section.settings.bg_bottom }} 39%);
+}
+
+.spot-hero-video-container {
+max-width: 1730px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 30% 71%;
+    padding: 0 90px; 
+}
+/* LEFT BG IMAGE */
+.spot-hero-video-left {
+position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.spot-hero-left-bg {
+position: absolute;
+    left: -205px;
+    top: 26px;
+    width: 606px;
+    opacity: 5;
+    z-index: 0;
+    max-width: 100%;
+    height: auto;
+}
+
+.spot-hero-left-bg img {
+  width: 100%;
+  height: auto;
+}
+
+/* keep content above image */
+.spot-hero-video-left h1,
+.spot-hero-video-left p,
+.spot-hero-video-project,
+.spot-hero-video-left .btn {
+  position: relative;
+  z-index: 2;
+}
+/* LEFT */
+/* wrapper */
+/* wrapper */
+.spot-hero-title {
+  position: relative;
+  font-size: 83px;
+  line-height: 1;
+  letter-spacing: -2px;
+  width:600px;
+  top:30px;
+}
+
+/* BASE TEXT (LEFT SIDE) */
+.spot-hero-title-base {
+  color: #000;
+}
+
+/* MASK TEXT (RIGHT SIDE ONLY) */
+.spot-hero-title-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #cfc2a8; /* same as your screenshot */
+  
+  /* SHOW ONLY RIGHT SIDE */
+  clip-path: inset(0 0 0 78%); /* adjust 60% based on layout */
+  pointer-events: none;
+}
+
+.spot-hero-video-project {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 140px 0 0;
+  position: relative;
+}
+
+.spot-hero-video-project .circle {
+width: 87px;
+    height: 87px;
+    background: #e4ed64;
+    border-radius: 50%;
+    position: absolute;
+    left: -30;
+    z-index: -1;
+}
+
+.spot-hero-video-project .num {
+font-size: 80px;
+    font-weight: 700;
+    border-right: 1px solid #cbcbcb;
+    line-height: 32px;
+    padding-right:17px;
+    padding-left:30px;
+}
+
+.spot-hero-video-project .txt {
+  font-size: 20px;
+  font-weight: 600;
+    color: #000;
+    line-height:20px;
+    max-width:30%;
+}
+
+.spot-hero-video-left p {
+  max-width: 384px;
+    color: #8a8a8a;
+    font-size: 18px;
+    margin: 30px 0 0;
+}
+
+.spot-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  padding:7px 11px 7px 19px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #000;
+  overflow: hidden;
+  width:fit-content;
+}
+
+/* TEXT */
+.spot-btn-text {
+  position: relative;
+  z-index: 2;
+}
+
+/* ICON WRAP */
+.spot-btn-icon-wrap {
+  position: relative;
+  width: 43px;
+  height: 43px;
+  font-size:18px;
+  background: #cddc39;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ICON DEFAULT */
+.spot-btn-icon {
+  position: absolute;
+  transition: transform 0.3s ease;
+}
+
+/* ICON HOVER */
+.spot-btn-icon-hover {
+  position: absolute;
+  transform: translate(-25px, 20px);
+  transition: transform 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.spot-btn:hover .spot-btn-icon {
+  transform: translate(20px, -20px);
+}
+
+.spot-btn:hover .spot-btn-icon-hover {
+  transform: translate(0, 0);
+}
+.spot-hero-video {
+  position: relative;
+  isolation: isolate;
+}
+/* RIGHT VIDEO */
+.spot-hero-video-right {
+  height: 765px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.spot-hero-video-right video,
+.spot-hero-video-right iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+}
+/* YOUTUBE FIX */
+.spot-hero-video-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.spot-hero-video-frame iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140%;
+  height: 140%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* disables click */
+}
+/* RESPONSIVE */
+@media(max-width: 768px){
+  .spot-hero-video-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .spot-hero-video-right {
+    height: 400px;
+  }
+
+  .spot-hero-video-left h1 {
+    font-size: 56px;
+  }
+}
+@media(max-width: 1024px){
+.spot-hero-video-container{
+  padding:0;
+  grid-template-columns: 42% 59%;
+}
+
+}
+@media(max-width: 600px){
+  .spot-hero-video-left h1 {
+    font-size: 32px;
+  }
+  .spot-hero-title{
+    font-size:71px;
+  }
+}
+</style>

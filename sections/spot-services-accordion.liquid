@@ -1,0 +1,401 @@
+{% schema %}
+{
+  "name": "Expertise Two Column",
+  "settings": [
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "DO • WHAT WE DO • DO • WHAT WE DO • DO • WHAT WE DO" },
+    { "type": "text", "id": "heading", "label": "Main Heading", "default": "Diverse practical expertise" },
+    { "type": "url", "id": "view_all_link", "label": "View All Services Link" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01." },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "url", "id": "link", "label": "Learn More Link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Expertise Two Column" }]
+}
+{% endschema %}
+
+<section class="ex2">
+<div class="ex2-wrap">
+
+<!-- HEADER -->
+<div class="ex2-header">
+
+  <div class="ex2-header-left">
+    
+    <!-- MARQUEE -->
+    <div class="ex2-marquee">
+      <div class="ex2-marquee-track">
+        <span>{{ section.settings.subtitle }}</span>
+        <span>{{ section.settings.subtitle }}</span>
+      </div>
+    </div>
+
+    <h2 class="ex2-heading">{{ section.settings.heading }}</h2>
+  </div>
+
+  <div class="ex2-header-right">
+   <a href="{{ section.settings.view_all_link }}" class="ex2-btn">
+  <span class="ex2-btn-text">View All Services</span>
+
+  <span class="ex2-btn-icon-wrap">
+    <span class="ex2-btn-icon">➚</span>
+    <span class="ex2-btn-icon-hover">➚</span>
+  </span>
+</a>
+  </div>
+
+</div>
+
+{% for block in section.blocks %}
+<div class="ex2-row">
+
+  <!-- LEFT SIDE -->
+  <div class="ex2-left">
+    <span class="ex2-num">{{ block.settings.number }}</span>
+
+    <div class="ex2-title">
+      {{ block.settings.title }}
+    </div>
+
+    <div class="ex2-desc">
+      {{ block.settings.description }}
+
+      <a href="{{ block.settings.link }}" class="ex2-learn-btn">
+  <span class="ex2-learn-btn-text">Learn more</span>
+
+  <span class="ex2-learn-btn-icon-wrap">
+    <span class="ex2-learn-btn-icon">➚</span>
+    <span class="ex2-learn-btn-icon-hover">➚</span>
+  </span>
+</a>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="ex2-right">
+    <div class="ex2-plus">+</div>
+
+    {% if block.settings.image %}
+    <img src="{{ block.settings.image | image_url: width: 800 }}">
+    {% endif %}
+  </div>
+
+</div>
+{% endfor %}
+
+</div>
+</section>
+
+<style>
+.ex2 { padding:80px 20px; font-family:sans-serif;}
+.ex2-wrap { max-width:1290px; margin:auto;}
+
+/* HEADER */
+.ex2-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:60px;
+  gap:20px;
+}
+
+.ex2-heading {
+  font-size:70px;
+  margin-top:15px;
+  max-width:700px;
+}
+
+/* MARQUEE */
+.ex2-marquee {
+  overflow:hidden;
+  border:1px solid #cddc39;
+  border-radius:20px;
+  display:inline-block;
+  width:100px;
+}
+
+.ex2-marquee-track {
+  display:flex;
+  width:max-content;
+  animation:ex2-marquee 12s linear infinite;
+}
+
+.ex2-marquee span {
+  padding:6px 20px;
+  font-size:12px;
+  white-space:nowrap;
+}
+
+@keyframes ex2-marquee {
+  0% { transform:translateX(0); }
+  100% { transform:translateX(-50%); }
+}
+
+/* VIEW BUTTON */
+.ex2-btn {
+  font-size:14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #ddd;
+  padding: 7px 11px 7px 19px;
+  border-radius: 40px;
+  text-decoration: none;
+  overflow: hidden;
+  color:#000;
+  font-weight:600;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.ex2-btn-text {
+  font-size: 14px;
+}
+
+/* ICON WRAP */
+.ex2-btn-icon-wrap {
+      position: relative;
+    width: 43px;
+    height: 43px;
+    font-size: 19px;
+    background: #cddc39;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ICONS */
+.ex2-btn-icon,
+.ex2-btn-icon-hover {
+  position: absolute;
+  transition: 0.3s ease;
+  font-size: 19px;
+}
+
+/* DEFAULT */
+.ex2-btn-icon {
+  transform: translate(0, 0);
+}
+
+/* HOVER ICON START POSITION */
+.ex2-btn-icon-hover {
+  transform: translate(-22px, 20px);
+}
+
+/* HOVER ANIMATION */
+.ex2-btn:hover .ex2-btn-icon {
+  transform: translate(20px, -20px);
+}
+
+.ex2-btn:hover .ex2-btn-icon-hover {
+  transform: translate(0, 0);
+}
+
+
+/* EXISTING DESIGN (UNCHANGED) */
+.ex2-row {
+  display:grid;
+  grid-template-columns: 1.5fr 1fr;
+  border-top:1px solid #eee;
+  padding:50px 0;
+  cursor:pointer;
+  align-items:start;
+}
+
+.ex2-left {
+  display:grid;
+  grid-template-columns:72px 1fr 1fr;
+  height:stretch;
+}
+
+.ex2-num { 
+  color:#000;
+  font-weight:600;
+ }
+
+.ex2-title {
+ font-size: 36px;
+    font-weight: 700;
+    color: #000;
+    line-height: 39px;
+    letter-spacing: -1px;
+}
+
+.ex2-desc {
+  font-size: 18px;
+    line-height: 1.5555555556;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical; 
+  color:#666;
+  max-width:350px;
+  display:flex;
+  margin:0 0 0 80px;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+/* LEARN MORE BUTTON */
+.ex2-learn-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  display:none;
+  margin-top: 15px;
+  text-decoration: none;
+  position: relative;
+}
+
+/* TEXT */
+.ex2-learn-btn-text {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ICON WRAP */
+.ex2-learn-btn-icon-wrap {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: #000;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ICONS */
+.ex2-learn-btn-icon,
+.ex2-learn-btn-icon-hover {
+  position: absolute;
+  color: #fff;
+  font-size: 20px;
+  transition: 0.3s ease;
+}
+
+/* DEFAULT */
+.ex2-learn-btn-icon {
+  transform: translate(0, 0);
+}
+
+/* HOVER START */
+.ex2-learn-btn-icon-hover {
+  transform: translate(-20px, 20px);
+}
+
+/* HOVER EFFECT */
+.ex2-learn-btn:hover .ex2-learn-btn-icon {
+  transform: translate(20px, -20px);
+}
+
+.ex2-learn-btn:hover .ex2-learn-btn-icon-hover {
+  transform: translate(0, 0);
+}
+
+.ex2-right {
+  position:relative;
+  display:flex;
+  justify-content:flex-end;
+}
+
+.ex2-right img {
+  width:325px;
+  height:385px;
+  object-fit:cover;
+  border-radius:25px;
+  opacity:0;
+  display:none;
+  transform:translateY(20px);
+  transition:0.4s;
+}
+
+.ex2-plus {
+  position:absolute;
+  right:0;
+  width:50px;
+  height:50px;
+  border:1px solid #ddd;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+}
+
+/* ACTIVE */
+.ex2-row.active img {
+  display:block;
+  opacity:1;
+  transform:translateY(0);
+}
+
+.ex2-row.active .ex2-plus {
+  opacity:0;
+}
+
+.ex2-row.active .ex2-learn-btn {
+  display:flex;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .ex2-header {
+    flex-direction:column;
+  }
+
+  .ex2-heading {
+    font-size:36px;
+  }
+
+  .ex2-row {
+    grid-template-columns:1fr;
+  }
+
+  .ex2-left {
+    grid-template-columns:1fr;
+  }
+
+  .ex2-right img {
+    width:100%;
+    height:auto;
+  }
+}
+</style>
+
+<script>
+document.querySelectorAll(".ex2-row").forEach(row => {
+
+  row.addEventListener("click", () => {
+
+    const isActive = row.classList.contains("active");
+
+    document.querySelectorAll(".ex2-row").forEach(el => {
+      el.classList.remove("active");
+      el.style.maxHeight = null;
+    });
+
+    if (!isActive) {
+      row.classList.add("active");
+
+      // smooth open
+      row.style.maxHeight = row.scrollHeight + "px";
+    }
+
+  });
+
+});
+</script>

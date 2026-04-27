@@ -1,0 +1,386 @@
+{% schema %}
+{
+  "name": "SP Services Cards",
+  "settings": [
+    { "type": "text", "id": "mini_text1", "label": "Mini Text1", "default": "WHO WE ARE" },
+    { "type": "text", "id": "subtitle", "label": "Top Text", "default": "WHAT WE OFFER" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Take a brief look at some of the services we offer" },
+    { "type": "image_picker", "id": "bg_image", "label": "Background Image (Left)" },
+    { "type": "textarea", "id": "bottom_text", "label": "Bottom Description", "default": "Discover top-tier real estate development services." },
+{ "type": "text", "id": "button_text", "label": "Button Text", "default": "View all services" },
+{ "type": "url", "id": "button_link", "label": "Button Link" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Service Card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "image_picker", "id": "image", "label": "Image" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "SP Services Cards" }
+  ]
+}
+{% endschema %}
+
+<section 
+  class="svc-sec"
+  style="background-image: url('{{ section.settings.bg_image | image_url: width: 1200 }}');"
+>
+  <div class="svc-wrap">
+
+    <!-- TOP -->
+    <div class="svc-head">
+     <!-- LEFT -->
+      <div class="abx-left1">
+        <div class="abx-marquee1">
+          <div class="abx-track1">
+            {% for i in (1..12) %}
+              <span>{{ section.settings.mini_text1 }}</span>
+              <span class="dot1">•</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+
+{% comment %} card {% endcomment %}
+ <div class="svc-grid">
+
+  {% for block in section.blocks %}
+    <div class="svc-card svc-card-{{ forloop.index }}">
+      <div class="svc-arrow"><span>➚</span></div>
+      <h3>{{ block.settings.title }}</h3>
+
+      {% if block.settings.image %}
+        <img src="{{ block.settings.image | image_url: width: 500 }}">
+      {% endif %}
+    </div>
+  {% endfor %}
+
+</div>
+<div class="svc-bottom">
+
+  {% if section.settings.bottom_text != blank %}
+    <p>{{ section.settings.bottom_text }}</p>
+  {% endif %}
+
+  {% if section.settings.button_text != blank %}
+    <a href="{{ section.settings.button_link }}" class="svc-btn">
+      {{ section.settings.button_text }}
+    </a>
+  {% endif %}
+
+</div>
+  </div>
+</section>
+
+<style>
+.svc-sec {
+  padding: 100px 0;
+  background-color: #f6f3ec;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 44%;
+}
+
+.svc-wrap {
+  max-width: 1300px;
+  margin: auto;
+}
+
+/* HEADER */
+.svc-head {
+  text-align: center;
+  margin-bottom: 60px;
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.svc-badge {
+  display: inline-block;
+  border: 1px solid #d4ff3f;
+  padding: 6px 15px;
+  border-radius: 30px;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.svc-head h2 {
+     font-size: 70px;
+    max-width: 700px;
+    margin: auto;
+    color: #000000;
+}
+/* MARQUEE */
+.abx-marquee1 {
+  overflow: hidden;
+  border: 1px solid #d4ff3f;
+  border-radius: 30px;
+  padding: 6px 15px;
+      margin: 0 0 30px 0;
+}
+.abx-left1 {
+    width: 11%;
+}
+.abx-track1 {
+  display: flex;
+  gap: 15px;
+  white-space: nowrap;
+  animation: abxScroll 2s linear infinite;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@keyframes abxScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+/* GRID */
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 25px;
+}
+.svc-card-1 {
+  grid-column: span 2;
+}
+.svc-card-2 {
+  grid-column: span 2;
+}
+.svc-card-3 {
+  grid-column: span 2;
+}
+
+/* SECOND ROW (CENTERED 2 CARDS) */
+.svc-card-4 {
+  grid-column: 1 / span 3;
+}
+.svc-card-5 {
+  grid-column: 4 / span 3;
+}
+/* CARD */
+.svc-card {
+  position: relative;
+  background: #fff;
+padding:29px 40px 230px; /* bottom space for image */
+  border-radius: 20px;
+  overflow: hidden;
+  transition: 0.4s;
+}
+
+/* IMAGE */
+.svc-card img {
+  position: absolute;
+ bottom: -22px;
+    left: -22px;
+    width: 72%;
+  object-fit: contain;
+{% comment %} left: -64px;
+    bottom: -51px;   {% endcomment %}
+    border-radius: 30px 0 30px 30px;
+
+}
+
+/* TITLE */
+.svc-card h3 {
+  font-size: 26px;
+  margin:0;
+}
+.svc-arrow span {
+  font-size: 20px; /* increase size */
+  line-height: 1;
+}
+/* ARROW */
+.svc-arrow {
+  position: absolute !important;
+  top: 8px;
+  right: 8px;
+  width: 42px;
+  height: 42px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.4s;
+  z-index: 3;
+}
+
+/* HOVER EFFECT */
+.svc-card::before {
+  content: ""; 
+  position: absolute; 
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: #d4ff3f; 
+  transform: scale(0); 
+  transform-origin: top right; 
+  transition: 0.4s; 
+border-bottom-left-radius: 20px;
+ z-index: 1;
+}
+.svc-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  background: #f6f3ec;
+  border-bottom-left-radius: 20px;
+  z-index: 1;
+}
+.svc-card:hover::before {
+  transform: scale(1);
+}
+
+/* CONTENT ABOVE */
+.svc-card * {
+  position: relative;
+  z-index: 2;
+}
+
+/* TEXT COLOR CHANGE */
+.svc-card:hover h3 {
+  color: #000;
+}
+
+/* ARROW ANIMATION */
+.svc-card:hover .svc-arrow {
+  background: #d4ff3f;
+  color: #000;
+}
+.svc-bottom {
+  display: flex;
+  justify-content: column;
+  align-items: center;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.svc-bottom p {
+  margin: 0;
+  font-size: 16px;
+  color: #000;
+  font-weight:600;
+}
+
+/* BUTTON STYLE */
+.svc-btn {
+  text-decoration: none;
+  font-size: 16px;
+  color: #000;
+  position: relative;
+  font-weight: 600;
+}
+
+/* underline effect */
+.svc-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: #000;
+  transition: 0.3s;
+}
+
+.svc-btn:hover::after {
+  width: 0;
+}
+/* RESPONSIVE */
+@media(max-width:1024px){
+ .svc-sec {
+  padding: 80px 30px;
+  }
+}
+
+@media(max-width:768px){
+  .svc-head h2 {
+    font-size: 56px;
+  }
+  .svc-card {
+    position: relative;
+    background: #fff;
+    padding: 30px 15px 195px;
+  }
+  .svc-card img {
+    position: absolute;
+    bottom: -14px;
+    left: -22px;
+    width: 100%;
+  }
+  .svc-card h3 {
+    font-size: 23px;
+    margin: 0;
+    color: #000000;
+  }
+  .abx-left1 {
+    width: 17%;
+}
+  .svc-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align:center;
+  }
+  .svc-bottom p {
+    margin: 0;
+    font-size: 15px;
+  }
+  .svc-btn {
+    text-decoration: none;
+    font-size: 15px;
+  }
+}
+
+@media(max-width:430px){
+  .svc-head h2 {
+    font-size:42px;
+  }
+  .svc-sec {
+    padding: 60px 15px;
+  }
+    .abx-left1 {
+    width: 30%;
+}
+.svc-grid {
+    display: grid;
+    grid-template-columns: 1fr !important;
+  }
+
+  /* REMOVE ALL GRID POSITIONING */
+  .svc-card-1,
+  .svc-card-2,
+  .svc-card-3,
+  .svc-card-4,
+  .svc-card-5 {
+    grid-column: auto !important;
+  }
+
+  .svc-card {
+    width: 100%;
+  }
+  .svc-card img {
+        position: absolute;
+        bottom: -26px;
+        left: -22px;
+        width: 77%;
+  }
+   .svc-card {
+    position: relative;
+    background: #fff;
+    padding: 30px 15px 220px;
+  }
+}
+</style>

@@ -1,0 +1,367 @@
+<section class="sp-vertical-gallery">
+  <div class="sp-container">
+    
+    <!-- LEFT IMAGE SLIDER -->
+    <div class="sp-gallery-left">
+      <div class="sp-slider-track">
+        {% for block in section.blocks %}
+          <div class="sp-image-item" data-index="{{ forloop.index0 }}">
+            <img src="{{ block.settings.image | image_url: width: 1200 }}" alt="{{ block.settings.title }}">
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="sp-gallery-right">
+      
+      <div class="sp-heading">
+        <p class="sp-subtitle">{{ section.settings.subtitle }}</p>
+        <h2>{{ section.settings.title }}</h2>
+      </div>
+
+      <div class="sp-accordion">
+
+        <!-- Single grey base line (full height) -->
+        <div class="sp-base-line"></div>
+
+        <!-- Black fill line (moves to active item position) -->
+        <div class="sp-active-line"></div>
+
+        {% for block in section.blocks %}
+          <div class="sp-acc-item {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+            <div class="sp-acc-title" data-index="{{ forloop.index0 }}">
+              {{ block.settings.title }}
+            </div>
+            <div class="sp-acc-content">
+              <p>{{ block.settings.text }}</p>
+            </div>
+          </div>
+        {% endfor %}
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+.sp-vertical-gallery {
+  padding: 60px 80px;
+}
+
+.sp-container {
+  display: flex;
+  gap: 60px;
+  align-items:center;
+}
+
+/* ── LEFT IMAGE ── */
+.sp-gallery-left {
+  width: 80%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.sp-slider-track {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform;
+}
+
+.sp-image-item {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.sp-image-item img {
+  width: 100%;
+  display: block;
+}
+
+/* ── RIGHT CONTENT ── */
+.sp-gallery-right {
+  width: 40%;
+}
+
+.sp-heading .sp-subtitle {
+  font-size: 13px;
+  margin-bottom: 12px;
+  color: #888;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.sp-heading h2 {
+  font-size: 39px;
+  margin-bottom: 32px;
+  color: #111;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+/* ── ACCORDION WRAPPER ── */
+.sp-accordion {
+  position: relative;
+  padding-left: 24px; 
+  width:60%;
+}
+
+/* Grey base line — full height of accordion */
+.sp-base-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: #a9a9a9;
+  border-radius: 2px;
+}
+
+/* Black active fill line */
+.sp-active-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  background: #000;
+  border-radius: 2px;
+  transition: top 0.5s cubic-bezier(0.77, 0, 0.175, 1),
+              height 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  /* progress fill animation */
+  overflow: hidden;
+}
+
+.sp-active-line::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 0%;
+  background: #000;
+  animation: none;
+}
+
+.sp-active-line.animating::after {
+  animation: fillProgress var(--sp-duration, 4000ms) linear forwards;
+}
+
+@keyframes fillProgress {
+  from { height: 0%; }
+  to   { height: 100%; }
+}
+
+/* ── ACCORDION ITEMS ── */
+.sp-acc-item {
+  padding: 14px 0;
+  cursor: pointer;
+}
+
+.sp-acc-title {
+  font-size: 18px;
+  color: #bbb;
+  font-weight: 800;
+  transition: color 0.3s, font-weight 0.3s;
+}
+
+.sp-acc-item.active .sp-acc-title {
+  color: #111;
+  font-weight: 600;
+}
+
+.sp-acc-content {
+  display: none;
+  margin-top: 8px;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.sp-acc-item.active .sp-acc-content {
+  display: block;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width: 991px){
+  .sp-container { flex-direction: column; }
+  .sp-gallery-left,
+  .sp-gallery-right { width: 100%; }
+}
+@media(max-width:1440px){
+    .sp-vertical-gallery {
+    padding: 60px 20px;
+}
+.sp-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+}
+@media(max-width:1024px){
+    .sp-heading h2 {
+    font-size: 32px;
+    margin:0;
+    padding-bottom: 20px;
+}
+.sp-accordion {
+    position: relative;
+    padding-left: 24px;
+    width: 100%;
+}
+.sp-gallery-left {
+    width: 60%;
+}
+}
+@media (max-width: 768px) {
+    .sp-gallery-left {
+        width: 100%;
+        height: 360px !important;
+    }
+}
+@media (max-width: 430px) {
+    .sp-gallery-left {
+        width: 100%;
+        height: auto;
+    }
+    .sp-vertical-gallery {
+        padding: 30px 20px;
+    }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  const items      = document.querySelectorAll(".sp-acc-item");
+  const track      = document.querySelector(".sp-slider-track");
+  const leftBox    = document.querySelector(".sp-gallery-left");
+  const firstImg   = document.querySelector(".sp-image-item img");
+  const activeLine = document.querySelector(".sp-active-line");
+  const accordion  = document.querySelector(".sp-accordion");
+
+  const DURATION = 4000; // ms per slide
+  activeLine.style.setProperty("--sp-duration", DURATION + "ms");
+
+  let autoTimer = null;
+
+  // Fix image wrapper height
+  function setHeight() {
+    leftBox.style.height = document.querySelector(".sp-image-item").offsetHeight + "px";
+  }
+  if (firstImg.complete) setHeight();
+  else firstImg.addEventListener("load", setHeight);
+  window.addEventListener("resize", () => { setHeight(); updateLine(getCurrentIndex()); });
+
+  function getCurrentIndex() {
+    let idx = 0;
+    items.forEach((item, i) => { if (item.classList.contains("active")) idx = i; });
+    return idx;
+  }
+
+  // Position the black active line on the active item
+  function updateLine(index) {
+    const accTop   = accordion.getBoundingClientRect().top;
+    const item     = items[index];
+    const itemTop  = item.getBoundingClientRect().top;
+    const itemH    = item.offsetHeight;
+
+    const topOffset = itemTop - accTop;
+
+    activeLine.style.top    = topOffset + "px";
+    activeLine.style.height = itemH + "px";
+
+    // Restart fill animation
+    activeLine.classList.remove("animating");
+    void activeLine.offsetWidth; // reflow
+    activeLine.classList.add("animating");
+  }
+
+  function goTo(index) {
+    index = (index + items.length) % items.length;
+
+    items.forEach(item => item.classList.remove("active"));
+    items[index].classList.add("active");
+
+    // Slide image vertically
+    const itemHeight = document.querySelector(".sp-image-item").offsetHeight;
+    track.style.transform = `translateY(-${index * itemHeight}px)`;
+
+    // Move & animate the black line
+    updateLine(index);
+
+    // Auto advance
+    clearTimeout(autoTimer);
+    autoTimer = setTimeout(() => goTo(index + 1), DURATION);
+  }
+
+  // Click handler
+  items.forEach(item => {
+    item.addEventListener("click", function(){
+      goTo(parseInt(this.getAttribute("data-index")));
+    });
+  });
+
+  // Init
+  goTo(0);
+
+});
+</script>
+
+{% schema %}
+{
+  "name": "Vertical Gallery",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "COLLECTION"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Discover The Beauty In Our Gallery"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Gallery Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Necklaces"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Content",
+          "default": "Write your content here"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vertical Gallery"
+    }
+  ]
+}
+{% endschema %}

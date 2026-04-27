@@ -1,0 +1,209 @@
+{% schema %}
+{
+  "name": "About Hero Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "About us"
+    },
+    {
+      "type": "text",
+      "id": "breadcrumb",
+      "label": "Breadcrumb",
+      "default": "Home • About us"
+    },
+    {
+      "type": "textarea",
+      "id": "right_text",
+      "label": "Right Side Text",
+      "default": "Whether you're building, remodeling, buying, or selling, we bring seamless project execution under one roof."
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Hero"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="about-hero">
+  <div class="about-hero__bg">
+    {% if section.settings.bg_image != blank %}
+      <img src="{{ section.settings.bg_image | img_url: 'master' }}" alt="about">
+    {% endif %}
+    <div class="about-hero__overlay"></div>
+  </div>
+
+  <div class="about-hero__content page-width">
+    
+    <!-- LEFT CONTENT -->
+    <div class="about-hero__left">
+          <h1>{{ section.settings.title }}</h1>
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="about-hero__right">
+         <h5 class="breadcrumb">{{ section.settings.breadcrumb }}</h5>
+      <p>{{ section.settings.right_text }}</p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.about-hero {
+    position: relative;
+    height: 623px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    top: -120px;
+    padding-bottom: 55px;
+}
+
+.about-hero__bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.about-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-hero__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 25, 35, 0.6);
+  top: 0;
+  left: 0;
+}
+.about-hero__left {
+    width: 100%;
+    max-width: 100%;
+    margin: 0px 0px 150px 0px;
+    box-sizing: border-box;
+}
+.about-hero__content {
+ position: relative;
+    max-width: 1730px;
+    margin: auto;
+    z-index: 2;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-top: 120px;
+}
+
+.about-hero__left h1 {
+font-size: 90px;
+    color: #fff;
+    margin: 10px 0 0;
+    font-weight: 600;
+    max-width: 100%;
+}
+
+.breadcrumb {
+    color: #FFFFFF99;
+    font-size: 14px;
+    font-weight: 700;
+    margin:0;
+}
+
+.about-hero__right {
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items:end;
+}
+.breadcrumb h5{
+  font-size:14px;
+  color:#FFFFFF99;
+}
+.about-hero__right p {
+width: 400px;
+    color: #FFFFFF99;
+    font-size: 22px;
+    line-height: 32px;
+    font-weight: 600;
+
+}
+@media (max-width: 1024px) {
+.about-hero__left h1{
+  font-size:56px;
+}
+.about-hero__content{
+  padding:70px 30px 0px;
+}
+.about-hero{
+  padding-bottom: 0px;
+  height: 473px;
+}
+.about-hero__left{
+  margin: 0px 0px 80px 0px;
+}
+
+}
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .about-hero {
+    height: auto;
+    padding: 60px 20px 20px;
+  }
+
+  {% comment %} .about-hero__content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  } {% endcomment %}
+  .about-hero__content {
+        height:400px !important;
+        padding: 100px 0px 0px;
+    }
+    .about-hero__left {
+        margin: 0px 0px 64px 0px;
+    }
+  .about-hero__left h1 {
+    font-size: 56px;
+  }
+
+  .about-hero__right {
+    max-width: 100%;
+  }
+}
+@media (max-width: 480px) {
+    .about-hero__content {
+        padding:118px 0 0 0;
+    }
+  .about-hero__right p{
+    display:none;
+  }
+  .about-hero__left h1 {
+    font-size: 42px;
+  }
+  .about-hero__left{
+  margin: 0px 0px 75px 0px;
+  }
+     .about-hero {
+        padding: 15px;
+        height: 320px;
+    }
+    .about-hero {
+        height: 355px;
+}
+}
+</style>

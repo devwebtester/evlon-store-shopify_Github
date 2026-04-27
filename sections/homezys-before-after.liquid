@@ -1,0 +1,316 @@
+{% schema %}
+{
+  "name": "Homezys Before/After",
+  "settings": [
+   {
+  "type": "text",
+  "id": "heading_text",
+  "label": "Heading Text",
+  "default": "Crafted for the way you"
+},
+{
+  "type": "text",
+  "id": "heading_highlight",
+  "label": "Highlight Text",
+  "default": "live & grow"
+},
+{
+  "type": "color",
+  "id": "highlight_color",
+  "label": "Highlight Color",
+  "default": "#4A9B6F"
+},
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Transform your daily routine with smart kitchen tools."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After Image"
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Before Label",
+      "default": "Before"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "After Label",
+      "default": "After"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homezys Before/After"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="hz-before-after">
+  <div class="hz-container">
+
+    <!-- LEFT CONTENT -->
+    <div class="hz-content">
+      <h2 class="hz-heading">
+  {{ section.settings.heading_text }}
+  <span style="color: {{ section.settings.highlight_color }};">
+    {{ section.settings.heading_highlight }}
+  </span>
+</h2>
+      <p>{{ section.settings.subheading }}</p>
+
+      <a href="{{ section.settings.button_link }}" class="hz-btn">
+        {{ section.settings.button_text }}
+      </a>
+    </div>
+
+    <!-- RIGHT COMPARISON -->
+    <div class="hz-compare">
+      <div class="hz-img-wrapper">
+
+        {% if section.settings.before_image %}
+          <img src="{{ section.settings.before_image | img_url: 'master' }}" class="hz-img before">
+        {% endif %}
+
+        {% if section.settings.after_image %}
+          <img src="{{ section.settings.after_image | img_url: 'master' }}" class="hz-img after">
+        {% endif %}
+
+        <div class="hz-slider"></div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.hz-before-after {
+  padding: 80px 20px;
+  background: #ffffff;
+}
+
+.hz-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.hz-content {
+  flex: 1;
+}
+
+.hz-heading {
+  font-size:52px;
+  margin-bottom: 15px;
+  color: #000;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.hz-heading span {
+  font-style: italic;
+}
+
+
+.hz-content p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.hz-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background-color: #4a9b6f;
+    color: #ffffff;
+    border: 2px solid #4a9b6f;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: 0.3s ease;
+  font-size:16px;
+  font-weight:700;
+}
+
+.hz-btn:hover {
+  background: #fff;
+  color: #4a9b6f;
+}
+
+.hz-compare {
+  flex: 1;
+}
+
+.hz-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid #fff;
+}
+
+/* BOTH IMAGES SAME */
+.hz-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* smooth drag */
+}
+
+/* AFTER IMAGE (SLIDER REVEAL) */
+.hz-img.after {
+  width: 50%;
+  z-index: 2;
+}
+
+/* SLIDER LINE */
+.hz-slider {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: #fff;
+  z-index: 3;
+  cursor: ew-resize;
+}
+
+/* CENTER ARROW HANDLE */
+.hz-slider::before {
+  content: '⇌';
+  position: absolute;
+  top: 50%;
+  left: -18px;
+  width: 36px;
+  height: 36px;
+  background: #fff;
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+/* REMOVE LABEL COMPLETELY */
+.hz-label {
+  display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hz-heading {
+    font-size:34.06px !important;
+}
+  .hz-container {
+    gap: 30px;
+  }
+
+ .hz-img-wrapper {
+    height: 300px;
+  }
+
+}
+@media (max-width: 1024px) {
+.hz-heading {
+    font-size: 46.08px;
+}
+}
+
+@media (max-width: 425px) {
+  .hz-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+    .hz-heading {
+    font-size: 30px;
+}
+  .hz-content,
+  .hz-compare {
+    width: 100%;
+    flex: unset;
+  }
+
+  .hz-compare {
+    display: block;
+  }
+
+  .hz-img-wrapper {
+    width: 100%;
+    height: 300px;
+  }
+  .hz-before-after {
+    padding: 40px 20px;
+    background: #ffffff;
+}
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const container = document.querySelector(".hz-img-wrapper");
+  const slider = document.querySelector(".hz-slider");
+  const afterImg = document.querySelector(".hz-img.after");
+
+  let isDragging = false;
+
+  const moveSlider = (x) => {
+    let rect = container.getBoundingClientRect();
+    let offsetX = x - rect.left;
+
+    offsetX = Math.max(0, Math.min(offsetX, rect.width));
+
+    let percent = (offsetX / rect.width) * 100;
+
+    slider.style.left = percent + "%";
+    afterImg.style.width = percent + "%";
+  };
+
+  // DESKTOP
+  slider.addEventListener("mousedown", () => isDragging = true);
+  window.addEventListener("mouseup", () => isDragging = false);
+  window.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    moveSlider(e.clientX);
+  });
+
+  // ✅ MOBILE TOUCH SUPPORT (IMPORTANT)
+  slider.addEventListener("touchstart", () => isDragging = true);
+  window.addEventListener("touchend", () => isDragging = false);
+  window.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    moveSlider(e.touches[0].clientX);
+  });
+});
+</script>

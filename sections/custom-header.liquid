@@ -1,0 +1,341 @@
+{% schema %}
+{
+  "name": "SP Header",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone Number",
+      "default": "+(084) 123 - 456 88"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Get In Touch"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "SP Header"
+    }
+  ]
+}
+{% endschema %}
+
+<header class="sp-header">
+  <div class="sp-header-inner">
+
+    <!-- LEFT SIDE -->
+    <div class="sp-left">
+
+      <!-- LOGO -->
+      <div class="sp-logo">
+        {% if section.settings.logo != blank %}
+          <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="logo">
+        {% else %}
+          <h2>Logo</h2>
+        {% endif %}
+      </div>
+
+      <!-- DIVIDER -->
+      <div class="sp-divider"></div>
+
+      <!-- MENU -->
+      <nav class="sp-nav">
+        <ul>
+          {% for link in linklists[section.settings.menu].links %}
+            <li>
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="sp-right">
+
+      <div class="sp-call">
+        <span>Call Us:</span>
+        <strong>{{ section.settings.phone }}</strong>
+      </div>
+
+      <a href="{{ section.settings.btn_link }}" class="sp-btn">
+        {{ section.settings.btn_text }}
+      </a>
+
+      <!-- MOBILE TOGGLE -->
+      <div class="sp-toggle">☰</div>
+
+    </div>
+
+  </div>
+</header>
+
+<style>
+/* HEADER */
+.sp-header {
+  width: 100%;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 99;
+}
+
+/* CONTAINER */
+.sp-header-inner {
+  max-width: 1730px;
+  margin: auto;
+  background: #fff;
+  border-radius: 60px;
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LEFT */
+.sp-left {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+/* LOGO */
+.sp-logo img {
+  height: 40px;
+}
+
+/* DIVIDER */
+.sp-divider {
+  width: 1px;
+  height: 35px;
+  background: #ddd;
+}
+
+/* MENU */
+.sp-nav ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.sp-nav a {
+  text-decoration: none;
+  color: #111;
+  font-weight: 500;
+  position: relative;
+}
+
+/* UNDERLINE HOVER */
+.sp-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #111;
+  transition: 0.3s;
+}
+
+.sp-nav a:hover::after {
+  width: 100%;
+}
+
+/* RIGHT */
+.sp-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* CALL */
+.sp-call {
+  font-size: 14px;
+  color: #555;
+}
+
+.sp-call strong {
+  color: #111;
+}
+
+/* BUTTON */
+.sp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  background: #d9f14a;
+  color: #111;
+  font-weight: 600;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* 🔥 HOVER BLACK (YOUR REQUIREMENT) */
+.sp-btn:hover {
+  background: #000;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* MOBILE */
+.sp-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+@media(max-width: 1024px) {
+
+  .sp-header-inner {
+    border-radius: 20px;
+  }
+
+  .sp-nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 260px;
+    height: 100%;
+    background: #fff;
+    padding: 30px;
+    transition: 0.3s;
+  }
+      .sp-header-inner {
+          border-radius: 50px;
+          margin: 0 24px;
+      }
+  .sp-left {
+      margin-left: 349px !important; 
+  }
+    .sp-nav.active {
+      left: 0;
+    }
+  .sp-divider {
+      display: none;
+  }
+    .sp-nav ul {
+      flex-direction: column;
+          gap: 15px;
+          margin-top: 60px;
+          padding: 16px;
+    }
+
+    .sp-toggle {
+      display: block;
+      background-color: #e4ed64;
+      padding: 5px 13px 5px 13px;
+    border-radius: 10px;
+    font-size:20px;
+    position: absolute !important;
+        left: 45px !important;
+    }
+}
+/* RESPONSIVE */
+@media(max-width: 768px) {
+
+  .sp-header-inner {
+    border-radius: 20px;
+  }
+
+  .sp-nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 260px;
+    height: 100%;
+    background: #fff;
+    padding: 30px;
+    transition: 0.3s;
+  }
+      .sp-header-inner {
+        border-radius: 50px;
+        margin: 0 24px;
+    }
+.sp-left {
+    margin-left: 120px !important; 
+}
+  .sp-nav.active {
+    left: 0;
+  }
+
+  .sp-nav ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+.sp-divider {
+    display: none;
+}
+  .sp-toggle {
+    display: block;
+    background-color: #e4ed64;
+    padding: 5px 13px 5px 13px;
+    border-radius: 10px;
+    font-size:20px;
+    position: absolute !important;
+        left: 45px !important;
+    }
+}
+@media(max-width: 430px) {
+.sp-btn {
+    display: none !important;
+}
+.sp-divider {
+    display: none;
+}
+.sp-toggle {
+  position: relative !important;
+  display: block;
+  background-color: #e4ed64;
+  padding: 5px 13px 5px 13px;
+  border-radius: 10px;
+  font-size:20px;
+  left: 0 !important;
+}
+    .sp-header-inner {
+        border-radius: 20px;
+        margin: 0 10px;
+    }
+    .sp-left {
+        margin-left: 0px !important;
+    }
+    .sp-call {
+    display: none;
+    }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const toggle = document.querySelector(".sp-toggle");
+  const nav = document.querySelector(".sp-nav");
+
+  toggle.addEventListener("click", function() {
+    nav.classList.toggle("active");
+  });
+});
+</script>

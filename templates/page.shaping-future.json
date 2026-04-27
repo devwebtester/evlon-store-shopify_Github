@@ -1,0 +1,473 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "shaping_future_hero_iGMyhV": {
+      "type": "Shaping-future-hero",
+      "blocks": {
+        "card_y44UNn": {
+          "type": "card",
+          "settings": {
+            "icon_img": "shopify://shop_images/svgviewer-png-output_2.png",
+            "icon_size": 40,
+            "title": "High quality products",
+            "desc": "The luxurious and exquisite design harmonious with the surrounding architecture provide the best living."
+          }
+        },
+        "card_tKYqD4": {
+          "type": "card",
+          "settings": {
+            "icon_img": "shopify://shop_images/svgviewer-png-output_3.png",
+            "icon_size": 40,
+            "title": "Professional services",
+            "desc": "The customer service center is ready to serve 24/7, support the residents to provide information."
+          }
+        },
+        "card_9xF76e": {
+          "type": "card",
+          "settings": {
+            "icon_img": "shopify://shop_images/svgviewer-png-output_4.png",
+            "icon_size": 40,
+            "title": "Real partnership",
+            "desc": "The customer service center is ready to serve 24/7, support the residents to provide information."
+          }
+        }
+      },
+      "block_order": [
+        "card_y44UNn",
+        "card_tKYqD4",
+        "card_9xF76e"
+      ],
+      "name": "Hero Glass Cards",
+      "settings": {
+        "bg": "shopify://shop_images/h1_bg.jpg",
+        "heading": "Shaping future through excellence",
+        "subtext": "We are a top 25 builder and developer fully invested in our customers’ success and improving the communities we serve.",
+        "left_text": "We developed landmark real estate projects that deliver lasting value to investors and communities.",
+        "btn_text": "View Services",
+        "btn_link": ""
+      }
+    },
+    "who_we_are_YTQFEt": {
+      "type": "who-we-are",
+      "name": "SP Final About Section",
+      "settings": {
+        "mini_text": "WHO WE ARE",
+        "heading": "The largest privately held real estate investors and managers in the world",
+        "vision_title": "Our vision",
+        "vision_desc": "To empower businesses with cutting-edge web solutions that enhance their digital presence and drive growth.",
+        "mission_title": "Our mission",
+        "mission_desc": "Our solutions are designed to meet the needs of modern enterprises, ensuring they thrive in today’s competitive online landscape.",
+        "main_img": "shopify://shop_images/Screenshot_2026-03-27_171049.png",
+        "small_img": "shopify://shop_images/h1_img-2.jpg",
+        "stat1_title": "GLOBAL REACH",
+        "stat1": "85",
+        "stat1_text": "offices worldwide",
+        "stat2_title": "LOCAL EXPERTISE",
+        "stat2": "1500",
+        "stat2_text": "employees",
+        "stat3_title": "OUR IMPACT",
+        "stat3": "248",
+        "stat3_text": "projects done"
+      }
+    },
+    "what_we_offer_Rp97nY": {
+      "type": "what-we-offer",
+      "blocks": {
+        "card_h8DYjg": {
+          "type": "card",
+          "settings": {
+            "title": "Real Estate Development",
+            "image": "shopify://shop_images/h1_service-1.png"
+          }
+        },
+        "card_wWCDmP": {
+          "type": "card",
+          "settings": {
+            "title": "Project<br> Management",
+            "image": "shopify://shop_images/h1_service-2.png"
+          }
+        },
+        "card_fmwHAe": {
+          "type": "card",
+          "settings": {
+            "title": "Investment &<br> Capital",
+            "image": "shopify://shop_images/h1_service-3_1.png"
+          }
+        },
+        "card_NEwtYD": {
+          "type": "card",
+          "settings": {
+            "title": "Construction<br>  Management",
+            "image": "shopify://shop_images/h1_service-4.png"
+          }
+        },
+        "card_fwVLj3": {
+          "type": "card",
+          "settings": {
+            "title": "Architecture &<br>  Design",
+            "image": "shopify://shop_images/h1_service-5.png"
+          }
+        }
+      },
+      "block_order": [
+        "card_h8DYjg",
+        "card_wWCDmP",
+        "card_fmwHAe",
+        "card_NEwtYD",
+        "card_fwVLj3"
+      ],
+      "name": "SP Services Premium",
+      "settings": {
+        "mini_text1": "WHAT WE OFFER",
+        "subtitle": "WHAT WE OFFER",
+        "heading": "Take a brief look at some of the services we offer",
+        "bg_image": "shopify://shop_images/double-arrow.png",
+        "bottom_text": "Discover top-tier real estate development services.",
+        "button_text": "View all services",
+        "button_link": ""
+      }
+    },
+    "sticky_scroll_section_pTKgn9": {
+      "type": "sticky-scroll-section",
+      "blocks": {
+        "slide_GfGymc": {
+          "type": "slide",
+          "settings": {
+            "tag": "SELECTED PROJECTS",
+            "heading": "Innovative designs, lasting impressions",
+            "location": "Bay Shore, NY",
+            "title": "Apartment Building",
+            "image": "shopify://shop_images/project_9.jpg"
+          }
+        },
+        "slide_xNNrm7": {
+          "type": "slide",
+          "settings": {
+            "tag": "",
+            "heading": "",
+            "location": "Huntsville, Alabama",
+            "title": "Eden Estate",
+            "image": "shopify://shop_images/project_6.jpg"
+          }
+        },
+        "slide_aWpWPA": {
+          "type": "slide",
+          "settings": {
+            "tag": "",
+            "heading": "",
+            "location": "Bay Shore, NY",
+            "title": "Vista at Councill Square",
+            "image": "shopify://shop_images/project_2.jpg"
+          }
+        },
+        "slide_mPwD4f": {
+          "type": "slide",
+          "settings": {
+            "tag": "",
+            "heading": "",
+            "location": "Phoenix, AZ",
+            "title": "Office Building",
+            "image": "shopify://shop_images/project_5.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "slide_GfGymc",
+        "slide_xNNrm7",
+        "slide_aWpWPA",
+        "slide_mPwD4f"
+      ],
+      "name": "XSP Sticky Projects",
+      "settings": {}
+    },
+    "makes_us_bQ6CY6": {
+      "type": "makes-us",
+      "blocks": {
+        "feature_Hm9mHi": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/love.png",
+            "title": "Corporate Responsibility",
+            "text": "Our goal is zero incidents and our lost time frequency rate is industry leading."
+          }
+        },
+        "feature_ryjCe8": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/costumer.png",
+            "title": "Experts with Team Spirit",
+            "text": "Our multi-skilled team provides innovative, forward-thinking solutions."
+          }
+        },
+        "feature_VJE9CA": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/networking.png",
+            "title": "Diversity, Equity & Inclusion",
+            "text": "We work with both investors and developers to create landmarks that make an impact."
+          }
+        }
+      },
+      "block_order": [
+        "feature_Hm9mHi",
+        "feature_ryjCe8",
+        "feature_VJE9CA"
+      ],
+      "name": "What Makes Us",
+      "settings": {
+        "image": "shopify://shop_images/h1_img-3.jpg",
+        "rating": "4.9",
+        "rating_text": "2k+ satisfied customers",
+        "avatar1": "shopify://shop_images/avatar-1.jpg",
+        "avatar2": "shopify://shop_images/avatar-2.jpg",
+        "avatar3": "shopify://shop_images/avatar-3.jpg",
+        "tag": "OUR COMMITMENT",
+        "heading": "What makes us different",
+        "description": "It’s not just about creating something good; it’s about designing, innovating, and collaborating to forge remarkable and unparalleled experiences."
+      }
+    },
+    "testimonial_slider_ebkert": {
+      "type": "testimonial-slider",
+      "blocks": {
+        "testimonial_THe4ad": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Your team were great to work with on our basement remodel! I will definitely be working with them for future projects!",
+            "name": "Floyd Miles",
+            "designation": "Bond Projects Coordinator"
+          }
+        },
+        "testimonial_pAxhYK": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "A wonderful experience! They knew what they were doing and were incredibly knowledgeable throughout the process.",
+            "name": "Floyd Miles",
+            "designation": "Bond Projects Coordinator"
+          }
+        },
+        "testimonial_twRg78": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "They knew what they were doing and were incredibly knowledgeable throughout the process. A wonderful!",
+            "name": "Floyd Miles",
+            "designation": "Bond Projects Coordinator"
+          }
+        },
+        "testimonial_bV8ra6": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I asked to have the area rebuilt and they were very prompt! Mud and texture came out great! Would highly recommend!",
+            "name": "Floyd Miles",
+            "designation": "Bond Projects Coordinator"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_THe4ad",
+        "testimonial_pAxhYK",
+        "testimonial_twRg78",
+        "testimonial_bV8ra6"
+      ],
+      "name": "Testimonial Advanced",
+      "settings": {
+        "center_image": "shopify://shop_images/h1_img-4.jpg",
+        "circle_text": "what people says · what people says ·  what people says ·  what people says ·"
+      }
+    },
+    "clients_Ue4bRC": {
+      "type": "clients",
+      "blocks": {
+        "logo_jAAdb3": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/svgviewer-png-output_10.png"
+          }
+        },
+        "logo_GXADYb": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/svgviewer-png-output_12.png"
+          }
+        },
+        "logo_UiBJMp": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/svgviewer-png-output_8.png"
+          }
+        },
+        "logo_itBRFw": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/svgviewer-png-output_7.png"
+          }
+        },
+        "logo_ae7hft": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/svgviewer-png-output_9.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_jAAdb3",
+        "logo_GXADYb",
+        "logo_UiBJMp",
+        "logo_itBRFw",
+        "logo_ae7hft"
+      ],
+      "name": "Client Logo Marquee",
+      "settings": {
+        "heading": "WE'RE PROUD TO PARTNER WITH BEST-IN-CLASS CLIENTS"
+      }
+    },
+    "team_EHmjMX": {
+      "type": "team",
+      "blocks": {
+        "member_LXPg7r": {
+          "type": "member",
+          "settings": {
+            "image": "shopify://shop_images/team-1.jpg",
+            "name": "Dennis Daniels",
+            "role": "founder & ceo"
+          }
+        },
+        "member_i7jP3c": {
+          "type": "member",
+          "settings": {
+            "image": "shopify://shop_images/team-2.jpg",
+            "name": "excutive assistant",
+            "role": "Johan Sanford"
+          }
+        },
+        "member_ytzDe8": {
+          "type": "member",
+          "settings": {
+            "image": "shopify://shop_images/team-3.jpg",
+            "name": "Floyd Miles",
+            "role": "director of architecture"
+          }
+        },
+        "member_zK47Lb": {
+          "type": "member",
+          "settings": {
+            "image": "shopify://shop_images/team-4.jpg",
+            "name": "Leslie Alexander",
+            "role": "Development manager"
+          }
+        },
+        "member_h7VaMd": {
+          "type": "member",
+          "settings": {
+            "image": "shopify://shop_images/team-5.jpg",
+            "name": "Bernardo Gordon",
+            "role": "OPERATIONS Manager"
+          }
+        }
+      },
+      "block_order": [
+        "member_LXPg7r",
+        "member_i7jP3c",
+        "member_ytzDe8",
+        "member_zK47Lb",
+        "member_h7VaMd"
+      ],
+      "name": "Team Advanced",
+      "settings": {
+        "heading": "Global executive leadership",
+        "mini_text2": "WHO WE ARE",
+        "subtitle": "MEET THE TEAM"
+      }
+    },
+    "contact_advanced_JdQPxW": {
+      "type": "contact-advanced",
+      "name": "Contact Advanced",
+      "settings": {
+        "bg_image": "shopify://shop_images/h1_bg-1.jpg",
+        "mini_text4": "QUICK • ENQUIRY",
+        "subtitle": "INQUIRY • QUICK",
+        "heading": "Get specialist advice for residential, commercial or property",
+        "btn_text": "Get A Call Back"
+      }
+    },
+    "discover_inspiration_kYadbf": {
+      "type": "Discover-inspiration",
+      "name": "Blog Slider Advanced",
+      "settings": {
+        "blog": "news",
+        "mini_text7": "QUICK • ENQUIRY",
+        "subtitle": "Articles & insights",
+        "heading": "Discover inspiration and trends",
+        "btn_text": "View All Posts"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "shaping_future_hero_iGMyhV",
+    "who_we_are_YTQFEt",
+    "what_we_offer_Rp97nY",
+    "sticky_scroll_section_pTKgn9",
+    "makes_us_bQ6CY6",
+    "testimonial_slider_ebkert",
+    "clients_Ue4bRC",
+    "team_EHmjMX",
+    "contact_advanced_JdQPxW",
+    "discover_inspiration_kYadbf"
+  ]
+}

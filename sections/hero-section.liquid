@@ -1,0 +1,243 @@
+<link href="https://fonts.cdnfonts.com/css/euclid-circular-a" rel="stylesheet">
+
+{% schema %}
+{
+  "name": "Hero Glow Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay Opacity",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Small Heading",
+      "default": "NEW COLLECTION"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "SKIN YOU'LL FALL FOR.\nLOVE STARTS WITH YOUR GLOW."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Clean beauty powered by science for luminous, healthy skin."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Label",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Glow"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="hero-glow">
+  <div class="hero-glow__bg"
+       style="background-image: url({{ section.settings.bg_image | image_url: width: 3000 }});">
+  </div>
+
+  <div class="hero-glow__overlay"
+       style="background-color: {{ section.settings.overlay_color }};
+              opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};">
+  </div>
+
+  <div class="hero-glow__container">
+    <div class="hero-glow__content">
+      
+      {% if section.settings.subtitle != blank %}
+        <p class="hero-glow__subtitle">
+          {{ section.settings.subtitle }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h1 class="hero-glow__heading">
+          {{ section.settings.heading | newline_to_br }}
+        </h1>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <p class="hero-glow__desc">
+          {{ section.settings.description }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.button_text != blank %}
+        <a href="{{ section.settings.button_link }}" class="hero-glow__btn">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+<style>
+.hero-glow {
+  position: relative;
+  width: 100%;
+  height: 750px; /* use height instead of min-height */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.hero-glow__bg {
+position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.hero-glow__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity:0.2;
+}
+
+.hero-glow__container {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+.hero-glow__content {
+  max-width: 757px;
+}
+
+.hero-glow__subtitle {
+ font-size: 24px;
+    font-weight: 300;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000000;
+    font-family: 'Euclid Circular A', sans-serif;
+    margin: 0;
+    padding-bottom: 15px;
+}
+
+.hero-glow__heading {
+font-size: 48px;
+    line-height: 115%;
+    font-weight: 500;
+    letter-spacing: 0%;
+    color: #535353;
+    margin: 0;
+     font-family: 'Euclid Circular A', sans-serif;
+}
+
+.hero-glow__desc {
+    font-size: 20px;
+    color: #000000;
+    font-weight: 300;
+    letter-spacing: 0%;
+    line-height: 100%;
+     font-family: 'Euclid Circular A', sans-serif;
+     margin: 0;
+    padding: 17px 0 20px;
+}
+
+.hero-glow__btn {
+  display: inline-block;
+  padding: 12px 36px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+  line-height:100%;
+  letter-spacing:0%;
+  font-weight:300;
+  transition: 0.3s ease;
+   font-family: 'Euclid Circular A', sans-serif;
+}
+
+.hero-glow__btn:hover {
+  background: #333;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-glow{
+    height:550px;
+}
+}
+
+@media (max-width: 768px) {
+    .hero-glow__subtitle {
+    font-size: 20px;
+    }
+  .hero-glow {
+ height: 500px;
+  }
+
+  .hero-glow__container {
+   padding: 40px 20px;
+        max-width: 610px;
+        margin: 0;
+  }
+
+  .hero-glow__heading {
+    font-size: 36px;
+  }
+
+  .hero-glow__content {
+    max-width: 100%;
+  }
+  .hero-glow__btn {
+    font-size:18px;
+  }
+}
+
+@media (max-width: 480px) {
+     .hero-glow {
+ height: 310px;
+  }
+  .hero-glow__heading {
+    font-size: 28px;
+  }
+
+  .hero-glow__desc {
+    font-size: 14px;
+    line-height: 23px;
+    padding: 8px 0 15px;
+  }
+}
+</style>

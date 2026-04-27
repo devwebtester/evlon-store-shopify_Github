@@ -1,0 +1,395 @@
+{% schema %}
+{
+  "name": "About Premium Section",
+  "settings": [
+    { "type": "text", "id": "badge", "label": "Badge", "default": "ABOUT US" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shaping the world of things to come" },
+    { "type": "textarea", "id": "desc", "label": "Description", "default": "We’d love to share more with you, please complete this form and our dedicated team will get back to you shortly." },
+    { "type": "textarea", "id": "subdesc", "label": "Sub Text", "default": "In markets from renewable energy, sports and entertainment, to data centers and healthcare..." },
+
+    { "type": "text", "id": "btn_text", "label": "Button Text", "default": "Meet The Team" },
+    { "type": "url", "id": "btn_link", "label": "Button Link" },
+
+    { "type": "image_picker", "id": "image", "label": "Main Image" },
+
+    { "type": "text", "id": "s1_num", "label": "Stat 1 Number", "default": "40+" },
+    { "type": "text", "id": "s1_text", "label": "Stat 1 Text", "default": "projects in development" },
+    { "type": "image_picker", "id": "s1_icon", "label": "Stat 1 Icon" },
+
+    { "type": "text", "id": "s2_num", "label": "Stat 2 Number", "default": "18m+" },
+    { "type": "text", "id": "s2_text", "label": "Stat 2 Text", "default": "square feet of property" },
+    { "type": "image_picker", "id": "s2_icon", "label": "Stat 2 Icon" },
+
+    { "type": "text", "id": "s3_num", "label": "Stat 3 Number", "default": "2.5b+" },
+    { "type": "text", "id": "s3_text", "label": "Stat 3 Text", "default": "total projects cost" },
+    { "type": "image_picker", "id": "s3_icon", "label": "Stat 3 Icon" }
+  ],
+  "presets": [
+    { "name": "About Premium Section" }
+  ]
+}
+{% endschema %}
+
+<section class="about-premium">
+  <div class="top">
+    
+    <div class="left">
+      <span class="badge">{{ section.settings.badge }}</span>
+      <h1>{{ section.settings.heading }}</h1>
+    </div>
+
+    <div class="right">
+      <p class="desc">{{ section.settings.desc }}</p>
+      <p class="sub">{{ section.settings.subdesc }}</p>
+
+     <a href="{{ section.settings.btn_link }}" class="sp-btn2">
+  <span class="text">{{ section.settings.btn_text }}</span>
+
+  <span class="btn-icon-wrap">
+    <span class="btn-icon">➚</span>
+    <span class="btn-icon-hover">➚</span>
+  </span>
+</a>
+    </div>
+
+  </div>
+
+  <div class="image-area">
+
+    {% if section.settings.image %}
+      <img src="{{ section.settings.image | image_url: width: 1400 }}">
+    {% endif %}
+
+    <!-- STAT 1 -->
+    <div class="stat stat1">
+      {% if section.settings.s1_icon %}
+        <img class="icon" src="{{ section.settings.s1_icon | image_url: width: 60 }}">
+      {% endif %}
+      <h3>{{ section.settings.s1_num }}<sup>+</sup></h3>
+      <p>{{ section.settings.s1_text }}</p>
+    </div>
+
+    <!-- STAT 2 -->
+    <div class="stat stat2">
+      {% if section.settings.s2_icon %}
+        <img class="icon" src="{{ section.settings.s2_icon | image_url: width: 60 }}">
+      {% endif %}
+      <h3>{{ section.settings.s2_num }}<sup>+</sup></h3>
+      <p>{{ section.settings.s2_text }}</p>
+    </div>
+
+    <!-- STAT 3 -->
+    <div class="stat stat3">
+      {% if section.settings.s3_icon %}
+        <img class="icon" src="{{ section.settings.s3_icon | image_url: width: 60 }}">
+      {% endif %}
+      <h3>{{ section.settings.s3_num }}<sup>+</sup></h3>
+      <p>{{ section.settings.s3_text }}</p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.about-premium {
+    background: linear-gradient(360deg, #f5f2ea 18%, #ffffff 10%);    
+    padding: 100px 20px 50px;
+    font-family: sans-serif;
+    margin-top: -125px;
+}
+
+.top {
+  max-width: 1290px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.left h1 {
+  font-size: 70px;
+  font-weight: 700;
+  line-height: 1.1;
+  max-width: 500px;
+  padding-top:15px;
+  margin:0;
+  color:#000;
+}
+
+.badge {
+  border: 1px solid #cddc39;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.right {
+  max-width: 640px;
+}
+
+.desc {
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-size:22px;
+  color:#000000;
+}
+sup {
+    color: #e4ed64;
+    font-size:45px;
+}
+.sub {
+  color: #4b4b4b;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* BUTTON */
+.sp-btn2 {
+display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+padding: 6px 8px 6px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #000;
+    transition: 0.3s;
+    border:1px solid #e0e0e0;
+}
+
+/* TEXT */
+.sp-btn2 .text {
+  font-size: 14px;
+}
+
+/* ICON WRAP */
+.btn-icon-wrap {
+position: relative;
+    width: 50px;
+    height: 50px;
+    background: #e4ed64;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* ICON BASE */
+.btn-icon,
+.btn-icon-hover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  transition: 0.3s ease;
+}
+
+/* DEFAULT POSITION */
+.btn-icon {
+  top: 0;
+  left: 0;
+}
+
+/* HOVER ICON (start below) */
+.btn-icon-hover {
+  top: 100%;
+  left: 0;
+}
+
+/* HOVER EFFECT */
+.sp-btn2:hover .btn-icon {
+  top: -100%;
+}
+
+.sp-btn2:hover .btn-icon-hover {
+  top: 0;
+}
+/* IMAGE */
+.image-area {
+  max-width: 1280px;
+  margin: 80px auto 0;
+  position: relative;
+      z-index: 1;
+}
+
+.image-area img {
+  width: 100%;
+  border-radius: 30px;
+}
+
+/* STATS */
+.stat {
+ position: absolute;
+    background: #f5f5f5;
+    padding: 30px 40px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: end;
+    border-radius: 20px;
+    width: 310px;
+    min-height: 250px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.stat h3 {
+  font-size: 70px;
+  margin:0;
+}
+
+.stat p {
+  font-size: 16px;
+  color: #777;
+  font-weight:600;
+  margin:0;
+}
+
+/* ICON */
+.stat .icon {
+  position: absolute;
+  top: 22px;
+  right: 38px;
+  width: 60px;
+  height: 60px;
+  border-radius: 0px;
+  object-fit: cover;
+}
+.about-premium:after{
+      content: "";
+    background: #fff;
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    left: 0;
+    top: 580px;
+    z-index: 0;
+    border-radius: 50px 50px 0 0;
+}
+/* POSITION */
+.stat1 { 
+    top: 18.5%;
+    right: 1%;
+}
+.stat2 { bottom: 2%; left: 49.5%; }
+.stat3 { bottom: 2%; right: 1%; }
+
+@media (max-width: 1024px) {
+  .image-area{
+    margin: 40px auto 0;
+  }
+.left h1{
+  font-size:56px;
+}
+.about-premium{
+  margin-top: -166px;
+  padding:100px 0px 50px;
+}
+.about-premium:after {
+  top: 50%;
+  height:69px;
+}
+.right {
+    max-width: 500px;
+    padding-left:28px;
+}
+.top{
+  gap:0;
+  padding: 0 20px;
+}
+.stat1 {
+    top: 16.9%;
+    right: 1%;
+}
+.stat2 {
+    bottom: 2%;
+    left: 39.7%;
+}
+.image-area img{
+  height: 630px;
+  object-fit: cover;
+}
+.stat{
+  width: 295px;
+  padding:30px 30px;
+}
+}
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .image-area {
+    margin-top: 40px;
+  }
+    
+        .about-premium:after {
+        top: 47%;
+        height: 69px;
+    }
+    .about-premium {
+        margin-top: -187px;
+    }
+        .stat {
+        width: 216px;
+        padding: 25px 15px;
+    }
+        .stat2 {
+        bottom: 2%;
+        left: 40.7%;
+    }
+}
+@media (max-width: 480px) {
+    .top {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+    .left h1 {
+        font-size: 42px;
+    }
+    span.badge {
+    margin: 0;
+}
+.right {
+    padding: 0;
+}
+.about-premium:after {
+        top: 34%;
+        height: 49px;
+        border-radius: 20px 20px 0 0;
+    }
+    .about-premium {
+        margin-top: -193px;
+    }
+    .desc{
+      line-height:30px;
+    }
+    .image-area img {
+    height: 800px;
+    }
+    .stat {
+    width: 94%;
+    min-height: 204px;
+    padding: 16px 15px;
+}
+.stat1 {
+  top: 16.9%;
+  right:3%;
+}
+.stat .icon{
+  top: 16px;
+  right: 21px;
+}
+.stat3 {
+    bottom: 31%;
+    right:3%;
+}
+.stat2 {
+        bottom: 4.5%;
+        left: 2.7%;
+    }
+  }
+</style>

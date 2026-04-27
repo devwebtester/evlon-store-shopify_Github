@@ -1,0 +1,203 @@
+<section class="sp-why-premium">
+      <!-- TOP TITLE -->
+    <div class="sp-header">
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.subtext }}</p>
+    </div>
+  <div class="sp-container2">
+
+  
+
+    <!-- CARDS -->
+    <div class="sp-grid">
+      {% for block in section.blocks %}
+        <div class="sp-card">
+
+          <div class="sp-icon">
+            {% if block.settings.icon != blank %}
+              <img src="{{ block.settings.icon | image_url: width: 100 }}" alt="">
+            {% endif %}
+          </div>
+
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+
+          <div class="sp-glow"></div>
+
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.sp-why-premium {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  color: #fff;
+}
+
+.sp-container2 {
+  max-width: 1200px;
+  margin: auto;
+  justify-content: center;
+}
+
+/* HEADER */
+.sp-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.sp-header h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.sp-header p {
+  color: #aaa;
+  max-width: 600px;
+  margin: auto;
+}
+
+/* GRID */
+.sp-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+/* CARD */
+.sp-card {
+  position: relative;
+  padding: 30px 20px;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  text-align: left;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ICON */
+.sp-icon img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 25px;
+  filter: brightness(0) invert(1);
+}
+
+/* TEXT */
+.sp-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.sp-card p {
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* GLOW */
+.sp-glow {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgb(0 131 255 / 46%), transparent);
+  top: -50px;
+  left: -50px;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+/* HOVER */
+.sp-card:hover {
+transform: translateY(-10px);
+    border-color: rgb(0 133 255 / 50%);
+    box-shadow: 0 10px 30px rgba(0, 255, 200, 0.1);
+
+}
+
+.sp-card:hover .sp-glow {
+  opacity: 1;
+}
+
+/* ✅ REMOVE FLOAT CONFLICT (IMPORTANT FIX) */
+/* (removed animation because it was breaking hover transform) */
+
+/* RESPONSIVE */
+@media(max-width: 991px){
+  .sp-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media(max-width: 1024px){
+  .sp-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 576px){
+  .sp-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Why Choose Premium",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why Choose Us"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "We provide premium experience"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Premium Quality"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "We deliver high quality products."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Choose Premium",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" }
+      ]
+    }
+  ]
+}
+{% endschema %}
