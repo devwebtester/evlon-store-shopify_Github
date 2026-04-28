@@ -307,6 +307,24 @@
         "heading": "Get specialist advice for residential, commercial or property",
         "btn_text": "Get A Call Back"
       }
+    },
+    "how_to_use_fYitmz": {
+      "type": "how-to-use",
+      "name": "Vytrition Final CTA",
+      "settings": {
+        "heading": "Your Brain Deserves Better Than 3pm Brain Fog",
+        "subtext": "Join 10,000+ customers who replaced the crash with clean, steady performance.",
+        "button_text": "Add to Cart — ₹699 with Free Delivery",
+        "button_url": "",
+        "trust_text": "30-Day Money-Back Guarantee · Ships in 24 hours",
+        "bg_color": "#1E6B45",
+        "btn_text_color": "#1E6B45",
+        "heading_font": "Syne",
+        "border_radius": 20,
+        "max_width": 1100,
+        "margin_top": 40,
+        "margin_bottom": 40
+      }
     }
   },
   "order": [
@@ -319,6 +337,7 @@
     "homezys_comparison_bzUn8g",
     "hero_section_mN3fPj",
     "homezys_faq_ggapGR",
-    "contact_advanced_HiGJmc"
+    "contact_advanced_HiGJmc",
+    "how_to_use_fYitmz"
   ]
 }
