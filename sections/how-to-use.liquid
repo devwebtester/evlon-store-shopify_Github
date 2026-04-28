@@ -1,0 +1,240 @@
+{% comment %}
+  Vytrition — Final CTA Banner Section
+  Add via: Online Store > Themes > Customize > Add Section > Custom Liquid
+  OR save as /sections/vytrition-final-cta.liquid and add to template
+{% endcomment %}
+
+<section class="vyt-cta-section" id="vytrition-cta-{{ section.id }}">
+  <div class="vyt-cta-inner">
+
+    <h2 class="vyt-cta-heading">{{ section.settings.heading }}</h2>
+    <p class="vyt-cta-subtext">{{ section.settings.subtext }}</p>
+
+    <div class="vyt-cta-btn-wrap">
+      <a href="{{ section.settings.button_url }}" class="vyt-cta-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        {{ section.settings.button_text }}
+      </a>
+    </div>
+
+    <p class="vyt-cta-trust">
+      <span class="vyt-trust-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        {{ section.settings.trust_text }}
+      </span>
+    </p>
+
+  </div>
+</section>
+
+<style>
+  #vytrition-cta-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    border-radius: {{ section.settings.border_radius }}px;
+    padding: 52px 32px 44px;
+    text-align: center;
+    margin: {{ section.settings.margin_top }}px auto {{ section.settings.margin_bottom }}px;
+    max-width: {{ section.settings.max_width }}px;
+  }
+
+  #vytrition-cta-{{ section.id }} .vyt-cta-heading {
+    font-family: {{ section.settings.heading_font }}, 'Georgia', serif;
+    font-size: clamp(26px, 5vw, 40px);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+  }
+
+  #vytrition-cta-{{ section.id }} .vyt-cta-subtext {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0 0 28px;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+
+  #vytrition-cta-{{ section.id }} .vyt-cta-btn-wrap {
+    margin-bottom: 18px;
+  }
+
+  #vytrition-cta-{{ section.id }} .vyt-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #ffffff;
+    color: {{ section.settings.btn_text_color }};
+    font-family: {{ section.settings.heading_font }}, 'Georgia', serif;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 16px 36px;
+    border-radius: 12px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: transform 0.15s ease, background 0.15s ease;
+    min-width: 260px;
+    border: none;
+    cursor: pointer;
+  }
+
+  #vytrition-cta-{{ section.id }} .vyt-cta-btn:hover {
+    background: #f0faf5;
+    transform: translateY(-2px);
+  }
+
+  #vytrition-cta-{{ section.id }} .vyt-cta-btn:active {
+    transform: translateY(0);
+  }
+
+  #vytrition-cta-{{ section.id }} .vyt-cta-trust {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.72);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  #vytrition-cta-{{ section.id }} .vyt-trust-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  #vytrition-cta-{{ section.id }} .vyt-trust-item svg {
+    opacity: 0.75;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    #vytrition-cta-{{ section.id }} {
+      padding: 40px 20px 36px;
+      border-radius: {{ section.settings.border_radius | divided_by: 1.5 | round }}px;
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+    #vytrition-cta-{{ section.id }} .vyt-cta-btn {
+      min-width: unset;
+      width: 100%;
+      max-width: 320px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Vytrition Final CTA",
+  "tag": "section",
+  "class": "vytrition-cta-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your Brain Deserves Better Than 3pm Brain Fog"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subheading",
+      "default": "Join 10,000+ customers who replaced the crash with clean, steady performance."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Add to Cart — ₹699 with Free Delivery"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "trust_text",
+      "label": "Trust line below button",
+      "default": "30-Day Money-Back Guarantee · Ships in 24 hours"
+    },
+    {
+      "type": "header",
+      "content": "Design"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background colour",
+      "default": "#1E6B45"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button text colour",
+      "default": "#1E6B45"
+    },
+    {
+      "type": "text",
+      "id": "heading_font",
+      "label": "Heading font (CSS font-family name)",
+      "default": "Syne"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Corner radius",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 600,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 1100
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin bottom",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vytrition Final CTA",
+      "category": "Promotional"
+    }
+  ]
+}
+{% endschema %}
