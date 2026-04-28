@@ -297,6 +297,16 @@
         "heading": "Frequently Asked Questions",
         "faq_image": "shopify://shop_images/Wandhalterung-fur-Besen_-Mopps-_-Werkzeuge-Zorenza-140191318.webp"
       }
+    },
+    "contact_advanced_HiGJmc": {
+      "type": "contact-advanced",
+      "name": "Contact Advanced",
+      "settings": {
+        "mini_text4": "QUICK • ENQUIRY",
+        "subtitle": "QUICK • ENQUIRY",
+        "heading": "Get specialist advice for residential, commercial or property",
+        "btn_text": "Get A Call Back"
+      }
     }
   },
   "order": [
@@ -308,6 +318,7 @@
     "homezys_before_after_Ph8AFL",
     "homezys_comparison_bzUn8g",
     "hero_section_mN3fPj",
-    "homezys_faq_ggapGR"
+    "homezys_faq_ggapGR",
+    "contact_advanced_HiGJmc"
   ]
 }
