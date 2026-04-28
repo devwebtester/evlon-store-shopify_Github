@@ -233,6 +233,35 @@
         "after_label": "After"
       }
     },
+    "homezys_comparison_bzUn8g": {
+      "type": "homezys-comparison",
+      "name": "HZ Before After",
+      "settings": {
+        "image_before": "shopify://shop_images/Gemini_Generated_Image_fid17sfid17sfid1_cleanup.webp",
+        "image_after": "shopify://shop_images/ChatGPT_Image_25_jan_2026_18_25_59_cleanup.webp",
+        "heading": "The Essence of Unforgettable Presence",
+        "subtext": "The Art of Scent — Individual Notes become an Unforgettable Journey",
+        "button_label": "Discover Now",
+        "button_link": "",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "hero_section_mN3fPj": {
+      "type": "hero-section",
+      "disabled": true,
+      "name": "Hero Glow",
+      "settings": {
+        "bg_image": "shopify://shop_images/Frame_2_1.png",
+        "overlay_opacity": 20,
+        "overlay_color": "#ffffff",
+        "subtitle": "NEW COLLECTION",
+        "heading": "SKIN YOU'LL FALL FOR.LOVE STARTS WITH YOUR GLOW.",
+        "description": "Clean beauty powered by science for luminous, healthy skin.",
+        "button_text": "SHOP NOW",
+        "button_link": ""
+      }
+    },
     "homezys_faq_ggapGR": {
       "type": "homezys-faq",
       "blocks": {
@@ -267,34 +296,6 @@
       "settings": {
         "heading": "Frequently Asked Questions",
         "faq_image": "shopify://shop_images/Wandhalterung-fur-Besen_-Mopps-_-Werkzeuge-Zorenza-140191318.webp"
-      }
-    },
-    "homezys_comparison_bzUn8g": {
-      "type": "homezys-comparison",
-      "name": "HZ Before After",
-      "settings": {
-        "image_before": "shopify://shop_images/Gemini_Generated_Image_fid17sfid17sfid1_cleanup.webp",
-        "image_after": "shopify://shop_images/ChatGPT_Image_25_jan_2026_18_25_59_cleanup.webp",
-        "heading": "The Essence of Unforgettable Presence",
-        "subtext": "The Art of Scent — Individual Notes become an Unforgettable Journey",
-        "button_label": "Discover Now",
-        "button_link": "",
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
-    "hero_section_mN3fPj": {
-      "type": "hero-section",
-      "name": "Hero Glow",
-      "settings": {
-        "bg_image": "shopify://shop_images/Frame_2_1.png",
-        "overlay_opacity": 20,
-        "overlay_color": "#ffffff",
-        "subtitle": "NEW COLLECTION",
-        "heading": "SKIN YOU'LL FALL FOR.LOVE STARTS WITH YOUR GLOW.",
-        "description": "Clean beauty powered by science for luminous, healthy skin.",
-        "button_text": "SHOP NOW",
-        "button_link": ""
       }
     }
   },
